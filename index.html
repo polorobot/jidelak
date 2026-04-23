@@ -212,10 +212,16 @@
     gap: 32px;
   }
 
-  /* Collapsed view: only today */
+  /* ---------- LAYOUT WRAPPER ---------- */
+  .menu-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  /* Collapsed view: only today + weekly */
   body:not(.expanded) .nav { display: none; }
   body:not(.expanded) .day:not(.today) { display: none; }
-  body:not(.expanded) .weekly { display: none; }
   body:not(.expanded) .grid {
     display: flex;
     justify-content: center;
@@ -228,6 +234,37 @@
   body:not(.expanded) .day.today .day-name { font-size: clamp(40px, 5vw, 56px); }
   body:not(.expanded) .day.today .item { padding: 14px 0; }
   body:not(.expanded) .day.today .item .name { font-size: 17px; }
+
+  /* Side-by-side: today + weekly on wide screens (collapsed mode) */
+  @media (min-width: 1100px) {
+    body:not(.expanded) .menu-layout {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 36px;
+    }
+    body:not(.expanded) .menu-layout .grid {
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+    body:not(.expanded) .menu-layout .weekly {
+      flex: 0 0 400px;
+      margin-top: 0;
+      padding: 40px 32px;
+      position: sticky;
+      top: 24px;
+    }
+    body:not(.expanded) .menu-layout .weekly h2 { font-size: 34px; }
+    body:not(.expanded) .menu-layout .weekly .sub { font-size: 15px; }
+    body:not(.expanded) .menu-layout .weekly-header { margin-bottom: 28px; }
+    body:not(.expanded) .menu-layout .weekly-grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    body:not(.expanded) .menu-layout .day.today {
+      max-width: 100%;
+      padding: 48px 48px;
+    }
+  }
 
   /* ---------- DAY CARD ---------- */
   .day {
@@ -529,6 +566,7 @@
     <a href="#tyden">Týdenní menu</a>
   </nav>
 
+  <div class="menu-layout">
   <div class="grid">
 
     <!-- PONDĚLÍ -->
@@ -797,6 +835,7 @@
 
   <!-- TÝDENNÍ MENU -->
   <section class="weekly" id="tyden">
+  <!-- always visible alongside the daily menu -->
     <div class="weekly-header">
       <h2>Týdenní menu</h2>
       <div class="sub">Dle aktuální nabídky</div>
@@ -862,6 +901,7 @@
       </div>
     </div>
   </section>
+  </div><!-- /menu-layout -->
 
   <div class="legend">
     <strong>Legenda alergenů</strong>
