@@ -53,7 +53,12 @@
     text-align: right;
     font-size: 14px;
     color: var(--muted);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
   }
+  .meta-text { display: flex; flex-direction: column; }
   .meta .week {
     font-size: 22px;
     font-weight: 700;
@@ -61,6 +66,38 @@
     letter-spacing: -0.01em;
   }
   .meta .updated { margin-top: 4px; }
+
+  .toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--card);
+    color: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 8px 16px 8px 12px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s ease;
+    box-shadow: var(--shadow);
+  }
+  .toggle-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+  }
+  .toggle-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .toggle-btn .icon-week,
+  .toggle-btn .label-week { display: inline-flex; }
+  .toggle-btn .icon-today,
+  .toggle-btn .label-today { display: none; }
+  body.expanded .toggle-btn .icon-week,
+  body.expanded .toggle-btn .label-week { display: none; }
+  body.expanded .toggle-btn .icon-today,
+  body.expanded .toggle-btn .label-today { display: inline-flex; }
 
   .nav {
     display: flex;
@@ -93,6 +130,23 @@
     grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
     gap: 20px;
   }
+
+  /* Collapsed view: only today */
+  body:not(.expanded) .nav { display: none; }
+  body:not(.expanded) .day:not(.today) { display: none; }
+  body:not(.expanded) .weekly { display: none; }
+  body:not(.expanded) .grid {
+    display: flex;
+    justify-content: center;
+  }
+  body:not(.expanded) .day.today {
+    max-width: 640px;
+    width: 100%;
+    padding: 32px;
+  }
+  body:not(.expanded) .day.today h2 { font-size: 32px; }
+  body:not(.expanded) .day.today .item .name { font-size: 16px; }
+  body:not(.expanded) .day.today .item .price { font-size: 16px; }
   .day {
     background: var(--card);
     border-radius: 16px;
@@ -263,8 +317,16 @@
       <div class="tagline">O kus lepší jídlo každý den · Perfect Canteen</div>
     </div>
     <div class="meta">
-      <div class="week">20. 4. – 26. 4. 2026</div>
-      <div class="updated">Aktualizováno: 23. 4. 2026</div>
+      <div class="meta-text">
+        <div class="week">20. 4. – 26. 4. 2026</div>
+        <div class="updated">Aktualizováno: 23. 4. 2026</div>
+      </div>
+      <button id="toggleWeek" class="toggle-btn" type="button" aria-label="Přepnout zobrazení">
+        <svg class="icon-week" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <svg class="icon-today" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/><path d="M5 5v14" opacity="0"/></svg>
+        <span class="label-week">Celý týden</span>
+        <span class="label-today">Jen dnes</span>
+      </button>
     </div>
   </header>
 
@@ -285,9 +347,19 @@
       const dayCard = document.querySelector('.day[data-day="' + today + '"]');
       if (dayCard) {
         dayCard.classList.add('today');
-        const id = dayCard.id;
-        const navLink = document.querySelector('.nav a[href="#' + id + '"]');
+        const navLink = document.querySelector('.nav a[href="#' + dayCard.id + '"]');
         if (navLink) navLink.classList.add('today');
+      } else {
+        document.body.classList.add('expanded');
+      }
+      const btn = document.getElementById('toggleWeek');
+      if (btn) {
+        btn.addEventListener('click', () => {
+          document.body.classList.toggle('expanded');
+          if (document.body.classList.contains('expanded')) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        });
       }
     })();
   </script>
