@@ -341,29 +341,6 @@
     <a href="#tyden">Týdenní menu</a>
   </nav>
 
-  <script>
-    (function() {
-      const today = new Date().getDay();
-      const dayCard = document.querySelector('.day[data-day="' + today + '"]');
-      if (dayCard) {
-        dayCard.classList.add('today');
-        const navLink = document.querySelector('.nav a[href="#' + dayCard.id + '"]');
-        if (navLink) navLink.classList.add('today');
-      } else {
-        document.body.classList.add('expanded');
-      }
-      const btn = document.getElementById('toggleWeek');
-      if (btn) {
-        btn.addEventListener('click', () => {
-          document.body.classList.toggle('expanded');
-          if (document.body.classList.contains('expanded')) {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }
-        });
-      }
-    })();
-  </script>
-
   <div class="grid">
 
     <!-- PONDĚLÍ -->
@@ -714,5 +691,28 @@
   </footer>
 
 </div>
+
+<script>
+  (function() {
+    const today = new Date().getDay();
+    const dayCard = document.querySelector('.day[data-day="' + today + '"]');
+    if (dayCard) {
+      dayCard.classList.add('today');
+      const navLink = document.querySelector('.nav a[href="#' + dayCard.id + '"]');
+      if (navLink) navLink.classList.add('today');
+    } else {
+      document.body.classList.add('expanded');
+    }
+    const btn = document.getElementById('toggleWeek');
+    if (btn) {
+      btn.addEventListener('click', () => {
+        document.body.classList.toggle('expanded');
+        if (document.body.classList.contains('expanded')) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    }
+  })();
+</script>
 </body>
 </html>
