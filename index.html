@@ -6,897 +6,830 @@
 <title>TV Nova — Denní menu</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f4ede0;
-    --bg-deep: #ebe2d1;
-    --card: #fdfaf2;
-    --ink: #14110d;
-    --ink-soft: #3a342b;
-    --muted: #8a7e6c;
-    --line: #d6cbb6;
-    --hairline: #c9bda4;
-    --gold: #a8853a;
-    --gold-soft: #d9bc78;
-    --gold-deep: #7a5f24;
-    --accent: #8b2a1f;
-    --shadow-sm: 0 2px 8px rgba(70, 50, 20, 0.06);
-    --shadow: 0 12px 40px rgba(70, 50, 20, 0.10);
-    --shadow-lg: 0 24px 70px rgba(40, 30, 15, 0.14);
+    --bg-1: #fff4e6;
+    --bg-2: #ffe0c0;
+    --bg-3: #ffd1a0;
+    --window: #fffbf3;
+    --window-edge: #f5e9d4;
+    --ink: #2d1f1a;
+    --ink-soft: #5a4540;
+    --muted: #9a8478;
+    --line: #f0e3cf;
+    --coral: #ff7e5f;
+    --coral-deep: #e8553a;
+    --pistachio: #8fb069;
+    --pistachio-deep: #6a8a48;
+    --sun: #f9c846;
+    --sun-deep: #d9a52f;
+    --berry: #c44d6c;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body {
-    background: var(--bg);
-    background-image:
-      radial-gradient(circle at 20% 0%, rgba(217, 188, 120, 0.12) 0%, transparent 50%),
-      radial-gradient(circle at 80% 100%, rgba(139, 42, 31, 0.06) 0%, transparent 50%);
-    background-attachment: fixed;
+    height: 100%;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 50%, var(--bg-3) 100%);
     color: var(--ink);
-    min-height: 100%;
   }
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-weight: 400;
+    font-family: 'Quicksand', -apple-system, sans-serif;
+    font-weight: 500;
     line-height: 1.4;
-    padding: 20px 20px 32px;
     -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
-  .wrap { max-width: 1240px; margin: 0 auto; }
-
-  /* ---------- HERO ---------- */
-  header.hero {
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: 24px;
-    margin-bottom: 20px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--hairline);
-    text-align: left;
-    position: relative;
-  }
-  .hero-left { text-align: left; }
-  .hero-center { text-align: center; }
-  .hero-right { text-align: right; display: flex; justify-content: flex-end; }
-  .crest {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--gold);
-    font-family: 'Inter', sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.36em;
-    text-transform: uppercase;
-  }
-  .crest::after {
-    content: "";
-    width: 30px;
-    height: 1px;
-    background: linear-gradient(90deg, var(--gold), transparent);
-  }
-  .brand h1 {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: clamp(28px, 3.4vw, 44px);
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1;
-    color: var(--ink);
-  }
-  .brand .tagline {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
-    color: var(--ink-soft);
-    font-size: 13px;
-    margin-top: 4px;
-  }
-  .ornament { display: none; }
-
-  .meta-bar {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-  .week {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-weight: 600;
-    font-size: 17px;
-    color: var(--gold-deep);
-    letter-spacing: 0.04em;
-    line-height: 1.2;
-  }
-  .updated {
-    font-size: 9px;
-    color: var(--muted);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    line-height: 1.2;
+    padding: 16px;
+    position: relative;
   }
 
-  /* ---------- TOGGLE ---------- */
-  .toggle-wrap { display: inline-flex; }
-  .toggle-btn {
+  /* ========== BACKGROUND DECORATIONS ========== */
+  .bg-decor {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+  .bg-icon {
+    position: absolute;
+    opacity: 0.18;
+    will-change: transform;
+  }
+  .bg-icon.s1 { top: 6%; left: 4%; width: 70px; animation: float 9s ease-in-out infinite; }
+  .bg-icon.s2 { top: 12%; right: 6%; width: 90px; animation: floatRev 11s ease-in-out infinite 0.5s; }
+  .bg-icon.s3 { bottom: 8%; left: 8%; width: 80px; animation: float 10s ease-in-out infinite 1s; }
+  .bg-icon.s4 { bottom: 14%; right: 4%; width: 100px; animation: floatRev 12s ease-in-out infinite 0.3s; }
+  .bg-icon.s5 { top: 45%; left: 2%; width: 60px; animation: floatRev 8s ease-in-out infinite 0.8s; }
+  .bg-icon.s6 { top: 50%; right: 2%; width: 70px; animation: float 9s ease-in-out infinite 1.5s; }
+  .bg-icon.s7 { top: 28%; left: 12%; width: 50px; animation: float 7s ease-in-out infinite 0.2s; }
+  .bg-icon.s8 { bottom: 32%; right: 14%; width: 55px; animation: floatRev 10s ease-in-out infinite 1.2s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-18px) rotate(8deg); }
+  }
+  @keyframes floatRev {
+    0%, 100% { transform: translateY(0) rotate(6deg); }
+    50% { transform: translateY(-22px) rotate(-7deg); }
+  }
+  @keyframes windowIn {
+    from { opacity: 0; transform: scale(0.92) translateY(24px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideLeft {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes pop {
+    0% { opacity: 0; transform: scale(0.6); }
+    60% { transform: scale(1.08); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(0); }
+    25% { transform: rotate(-8deg); }
+    75% { transform: rotate(8deg); }
+  }
+
+  /* ========== WINDOW ========== */
+  .window {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    max-height: 760px;
+    background: var(--window);
+    border-radius: 28px;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.8) inset,
+      0 30px 60px -20px rgba(70, 40, 20, 0.35),
+      0 0 0 1px rgba(232, 85, 58, 0.12);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    animation: windowIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  .window::before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    border-radius: 18px;
+    border: 1.5px dashed rgba(232, 85, 58, 0.22);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ========== HEADER ========== */
+  .window-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 28px 14px;
+    border-bottom: 1.5px dashed var(--line);
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand-logo {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--coral), var(--berry));
+    border-radius: 14px;
+    color: white;
+    box-shadow: 0 6px 16px -4px rgba(232, 85, 58, 0.5);
+    animation: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    animation-delay: 0.2s;
+  }
+  .brand-text { display: flex; flex-direction: column; }
+  .brand-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--ink);
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .brand-sub {
+    font-size: 11px;
+    color: var(--coral-deep);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .meta {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .week-pill {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: transparent;
-    color: var(--ink);
-    border: 1px solid var(--gold);
-    border-radius: 0;
-    padding: 8px 14px;
-    font-family: 'Inter', sans-serif;
+    background: var(--coral);
+    color: white;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    box-shadow: 0 4px 12px -3px rgba(232, 85, 58, 0.4);
+  }
+  .week-pill svg { width: 14px; height: 14px; }
+  .updated {
     font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
+    color: var(--muted);
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    position: relative;
-    white-space: nowrap;
+    margin-top: 4px;
   }
-  .toggle-btn:hover {
-    background: var(--ink);
-    color: var(--card);
-    border-color: var(--ink);
-  }
-  .toggle-btn svg { width: 12px; height: 12px; flex-shrink: 0; }
-  .toggle-btn .icon-week,
-  .toggle-btn .label-week { display: inline-flex; }
-  .toggle-btn .icon-today,
-  .toggle-btn .label-today { display: none; }
-  body.expanded .toggle-btn .icon-week,
-  body.expanded .toggle-btn .label-week { display: none; }
-  body.expanded .toggle-btn .icon-today,
-  body.expanded .toggle-btn .label-today { display: inline-flex; }
 
-  /* ---------- NAV ---------- */
-  .nav {
+  /* ========== TABS ========== */
+  .tabs {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2px;
-    margin: 16px 0 16px;
-    padding: 10px 0;
-    border-top: 1px solid var(--hairline);
-    border-bottom: 1px solid var(--hairline);
-  }
-  .nav a {
-    text-decoration: none;
-    color: var(--ink-soft);
-    padding: 4px 12px;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    transition: color 0.2s ease;
+    gap: 4px;
+    padding: 12px 24px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    border-bottom: 1.5px dashed var(--line);
     position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+    scrollbar-width: none;
   }
-  .nav a:hover { color: var(--gold-deep); }
-  .nav a.today {
-    color: var(--gold-deep);
-  }
-  .nav a.today::after {
-    content: "";
-    position: absolute;
-    bottom: -1px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
-    background: var(--gold);
-    border-radius: 50%;
-  }
-
-  /* ---------- GRID ---------- */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 16px;
-  }
-
-  /* ---------- LAYOUT WRAPPER ---------- */
-  .menu-layout {
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex: 1 1 auto;
+    min-width: 90px;
+    background: transparent;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 8px;
+    cursor: pointer;
+    text-align: center;
+    font-family: inherit;
+    color: var(--ink-soft);
+    transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    align-items: center;
+    gap: 4px;
+    animation: fadeUp 0.4s ease-out both;
+    animation-delay: calc(var(--i, 0) * 0.045s + 0.25s);
   }
-
-  /* Collapsed view: only today + weekly */
-  body:not(.expanded) .nav { display: none; }
-  body:not(.expanded) .day:not(.today) { display: none; }
-  body:not(.expanded) .grid {
-    display: flex;
-    justify-content: center;
+  .tab:hover {
+    background: rgba(255, 126, 95, 0.1);
+    transform: translateY(-2px);
   }
-  body:not(.expanded) .day.today {
-    max-width: 100%;
-    width: 100%;
-    padding: 22px 26px;
+  .tab.active {
+    background: linear-gradient(135deg, var(--coral), var(--coral-deep));
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px -6px rgba(232, 85, 58, 0.5);
   }
-  body:not(.expanded) .day.today .day-name { font-size: 26px; }
-
-  /* Side-by-side: today + weekly on wide screens (collapsed mode) */
-  @media (min-width: 900px) {
-    body:not(.expanded) .menu-layout {
-      flex-direction: row;
-      align-items: flex-start;
-      gap: 18px;
-    }
-    body:not(.expanded) .menu-layout .grid {
-      flex: 1 1 auto;
-      min-width: 0;
-    }
-    body:not(.expanded) .menu-layout .weekly {
-      flex: 0 0 340px;
-      margin-top: 0;
-      padding: 22px 22px;
-      position: sticky;
-      top: 12px;
-    }
-    body:not(.expanded) .menu-layout .weekly h2 { font-size: 24px; }
-    body:not(.expanded) .menu-layout .weekly .sub { font-size: 13px; }
-    body:not(.expanded) .menu-layout .weekly-header { margin-bottom: 14px; }
-    body:not(.expanded) .menu-layout .weekly-grid {
-      grid-template-columns: 1fr;
-      gap: 14px;
-    }
-    body:not(.expanded) .menu-layout .day.today {
-      max-width: 100%;
-      padding: 22px 26px;
-    }
-  }
-
-  /* ---------- DAY CARD ---------- */
-  .day {
-    background: var(--card);
-    padding: 18px 20px;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid rgba(168, 133, 58, 0.15);
-    position: relative;
-    scroll-margin-top: 12px;
-  }
-  .day::before {
+  .tab.is-today:not(.active)::after {
     content: "";
     position: absolute;
-    top: 4px;
-    left: 4px;
-    right: 4px;
-    bottom: 4px;
-    border: 1px solid rgba(168, 133, 58, 0.15);
+    top: 6px;
+    right: 8px;
+    width: 7px;
+    height: 7px;
+    background: var(--sun);
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px white, 0 0 8px var(--sun);
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.3); opacity: 0.7; }
+  }
+  .tab-name {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1;
+  }
+  .tab-date {
+    font-size: 10px;
+    opacity: 0.7;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* ========== BODY ========== */
+  .body {
+    display: grid;
+    grid-template-columns: 1fr 360px;
+    gap: 0;
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+  }
+  .today, .weekly {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 22px 28px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--coral) transparent;
+  }
+  .today::-webkit-scrollbar, .weekly::-webkit-scrollbar { width: 5px; }
+  .today::-webkit-scrollbar-thumb, .weekly::-webkit-scrollbar-thumb {
+    background: var(--coral);
+    border-radius: 10px;
+  }
+
+  .weekly {
+    background: linear-gradient(165deg, #2d1f1a 0%, #1a0f0c 100%);
+    color: #f8e9d2;
+    padding: 22px 24px;
+    position: relative;
+  }
+  .weekly::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border-radius: 14px;
+    border: 1.5px dashed rgba(249, 200, 70, 0.2);
     pointer-events: none;
   }
-  .day.today {
-    background: var(--card);
-    box-shadow: var(--shadow);
-    border-color: var(--gold);
-  }
-  .day.today::before { border-color: var(--gold); }
-  .day-header {
-    text-align: center;
-    margin-bottom: 12px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--hairline);
-    position: relative;
-  }
-  .day-name {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-weight: 500;
+  .weekly-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
     font-size: 22px;
-    line-height: 1;
+    color: var(--sun);
+    text-align: center;
+    margin-bottom: 6px;
     letter-spacing: -0.01em;
-    color: var(--ink);
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
   }
-  .day-date {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-style: italic;
-    color: var(--muted);
-    font-size: 13px;
-    margin-left: 8px;
-    display: inline-block;
-  }
-  .day-ornament { display: none; }
-
-  .section { margin-top: 10px; }
-  .section:first-of-type { margin-top: 0; }
-  .section-label {
-    text-align: left;
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 0.28em;
+  .weekly-title svg { width: 22px; height: 22px; animation: wiggle 4s ease-in-out infinite; }
+  .weekly-sub {
+    text-align: center;
+    color: rgba(248, 233, 210, 0.65);
+    font-size: 11px;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--gold-deep);
-    margin-bottom: 4px;
-    position: relative;
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+
+  /* ========== SECTIONS ========== */
+  .section {
+    margin-bottom: 18px;
+    animation: fadeUp 0.5s ease-out both;
+    animation-delay: calc(var(--i, 0) * 0.08s + 0.4s);
+  }
+  .section:last-child { margin-bottom: 0; }
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .section-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    flex-shrink: 0;
+    color: white;
+  }
+  .section-icon.polevka { background: linear-gradient(135deg, #ff9a76, #e8553a); }
+  .section-icon.local   { background: linear-gradient(135deg, #ffaa3a, #d97a1f); }
+  .section-icon.ethnic  { background: linear-gradient(135deg, #b97aff, #6f3aa8); }
+  .section-icon.vege    { background: linear-gradient(135deg, #b5d77f, #6a8a48); }
+  .section-icon svg { width: 18px; height: 18px; }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--ink);
+    letter-spacing: -0.01em;
   }
 
   .item {
     display: flex;
     align-items: baseline;
-    gap: 8px;
-    padding: 4px 0;
-    border-bottom: 1px dotted var(--hairline);
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--line);
   }
   .item:last-child { border-bottom: none; }
   .item .name {
     flex: 1;
     font-size: 13px;
     color: var(--ink-soft);
-    font-weight: 400;
-    line-height: 1.35;
+    line-height: 1.4;
+    font-weight: 500;
   }
   .item .name strong {
-    font-weight: 500;
+    font-weight: 700;
     color: var(--ink);
   }
   .item .name .gram {
-    color: var(--muted);
-    font-style: italic;
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 13px;
+    color: var(--coral-deep);
+    font-weight: 700;
+    font-size: 12px;
     margin-right: 4px;
   }
-  .item .allergens {
-    display: inline-block;
+  .item .name .all {
     color: var(--muted);
-    font-size: 9px;
-    margin-left: 2px;
-    letter-spacing: 0.02em;
-    font-style: italic;
+    font-size: 10px;
+    margin-left: 3px;
+    font-weight: 500;
   }
   .item .price {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-weight: 600;
-    color: var(--gold-deep);
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    color: var(--coral-deep);
     white-space: nowrap;
-    font-size: 14px;
-    letter-spacing: 0.02em;
+    font-size: 15px;
   }
 
-  /* ---------- WEEKLY ---------- */
-  .weekly {
-    padding: 22px 22px;
-    background: linear-gradient(180deg, #1a1612 0%, #0e0b08 100%);
-    color: #f0e6d3;
-    box-shadow: var(--shadow);
-    border: 1px solid var(--gold-deep);
-    position: relative;
+  /* ========== WEEKLY (right pane) ========== */
+  .weekly .cat {
+    margin-bottom: 16px;
+    animation: slideLeft 0.5s ease-out both;
+    animation-delay: calc(var(--i, 0) * 0.07s + 0.5s);
   }
-  .weekly::before {
-    content: "";
-    position: absolute;
-    top: 6px;
-    left: 6px;
-    right: 6px;
-    bottom: 6px;
-    border: 1px solid rgba(168, 133, 58, 0.35);
-    pointer-events: none;
-  }
-  .weekly-header {
-    text-align: center;
-    margin-bottom: 14px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(168, 133, 58, 0.3);
-  }
-  .weekly h2 {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-weight: 500;
-    font-size: 24px;
-    color: #f5ecd9;
-    letter-spacing: -0.01em;
-    line-height: 1;
-  }
-  .weekly .sub {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-style: italic;
-    color: var(--gold-soft);
-    font-size: 13px;
-    margin-top: 4px;
-  }
-  .weekly-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 18px;
-  }
-  .weekly-cat h3 {
-    font-family: 'Inter', sans-serif;
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--gold-soft);
-    text-align: left;
+  .weekly .cat:last-child { margin-bottom: 0; }
+  .weekly .cat h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--sun);
+    letter-spacing: 0.02em;
     margin-bottom: 6px;
     padding-bottom: 4px;
-    border-bottom: 1px solid rgba(168, 133, 58, 0.25);
+    border-bottom: 1px dashed rgba(249, 200, 70, 0.25);
   }
-  .weekly-cat h3.spaced { margin-top: 14px; }
   .weekly .item {
-    border-bottom-color: rgba(168, 133, 58, 0.18);
+    border-bottom-color: rgba(249, 200, 70, 0.12);
+    padding: 6px 0;
   }
-  .weekly .item .name { color: #d8cdb8; }
-  .weekly .item .name strong { color: #f5ecd9; font-weight: 500; }
-  .weekly .item .name .gram { color: #998a6e; }
-  .weekly .item .allergens { color: #8a7c5f; }
-  .weekly .item .price { color: var(--gold-soft); }
+  .weekly .item .name { color: rgba(248, 233, 210, 0.85); font-size: 12px; }
+  .weekly .item .name strong { color: #fff5e0; }
+  .weekly .item .name .gram { color: var(--sun); font-weight: 600; }
+  .weekly .item .name .all { color: rgba(248, 233, 210, 0.5); }
+  .weekly .item .price { color: var(--sun); font-size: 14px; }
 
-  /* ---------- LEGEND ---------- */
-  .legend {
-    margin-top: 16px;
-    padding: 12px 16px;
-    background: var(--card);
-    border: 1px solid rgba(168, 133, 58, 0.18);
-    color: var(--muted);
-    line-height: 1.5;
-    text-align: center;
-    font-style: italic;
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 11px;
-  }
-  .legend strong {
-    color: var(--gold-deep);
-    font-style: normal;
-    font-family: 'Inter', sans-serif;
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    display: inline;
-    margin-right: 6px;
-  }
-
-  footer {
-    margin-top: 12px;
+  /* ========== FOOTER ========== */
+  .window-footer {
+    flex-shrink: 0;
+    padding: 10px 28px;
+    border-top: 1.5px dashed var(--line);
     text-align: center;
     color: var(--muted);
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
+    background: rgba(255, 244, 230, 0.4);
+    position: relative;
+    z-index: 2;
   }
-  footer a {
-    color: var(--gold-deep);
+  .window-footer a {
+    color: var(--coral-deep);
     text-decoration: none;
-    border-bottom: 1px solid currentColor;
-    padding-bottom: 1px;
+    font-weight: 700;
   }
-  footer .sep { margin: 0 8px; opacity: 0.5; }
+  .window-footer a:hover { text-decoration: underline; }
+  .sep { margin: 0 8px; opacity: 0.4; }
 
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 900px) {
+    .body { grid-template-columns: 1fr; }
+    .weekly { display: none; }
+    .body.show-weekly .today { display: none; }
+    .body.show-weekly .weekly { display: block; }
+  }
   @media (max-width: 700px) {
-    body { padding: 12px 12px 24px; }
-    header.hero {
-      grid-template-columns: 1fr;
-      gap: 8px;
-      text-align: center;
-    }
-    .hero-left, .hero-right { text-align: center; justify-content: center; }
-    .day { padding: 16px 18px; }
-    body:not(.expanded) .day.today { padding: 18px 20px; }
-    .weekly { padding: 18px 18px; }
+    body { padding: 8px; }
+    .window { border-radius: 20px; max-height: none; }
+    .window-header { padding: 14px 18px 10px; flex-wrap: wrap; gap: 10px; }
+    .meta { text-align: left; }
+    .tabs { padding: 8px 14px; gap: 2px; }
+    .tab { min-width: 70px; padding: 8px 4px; }
+    .tab-name { font-size: 13px; }
+    .today, .weekly { padding: 16px 18px; }
   }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <header class="hero">
-    <div class="hero-left">
-      <div class="crest">Perfect Canteen</div>
-    </div>
-    <div class="hero-center brand">
-      <h1>TV Nova</h1>
-      <div class="tagline">O kus lepší jídlo každý den</div>
-    </div>
-    <div class="hero-right">
-      <div class="meta-bar">
-        <div class="meta-text">
-          <div class="week">20. 4. – 26. 4. 2026</div>
-          <div class="updated">Aktualizováno · 23. 4. 2026</div>
-        </div>
-        <div class="toggle-wrap">
-          <button id="toggleWeek" class="toggle-btn" type="button" aria-label="Přepnout zobrazení">
-            <svg class="icon-week" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="0"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            <svg class="icon-today" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-            <span class="label-week">Celý týden</span>
-            <span class="label-today">Jen dnes</span>
-          </button>
-        </div>
-      </div>
-    </div>
-  </header>
+<div id="root"></div>
 
-  <nav class="nav">
-    <a href="#po">Pondělí</a>
-    <a href="#ut">Úterý</a>
-    <a href="#st">Středa</a>
-    <a href="#ct">Čtvrtek</a>
-    <a href="#pa">Pátek</a>
-    <a href="#so">Sobota</a>
-    <a href="#ne">Neděle</a>
-    <a href="#tyden">Týdenní menu</a>
-  </nav>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.3.1",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "htm": "https://esm.sh/htm@3.1.1/preact"
+  }
+}
+</script>
 
-  <div class="menu-layout">
-  <div class="grid">
+<script type="module">
+import React, { useState, useMemo } from "react";
+import { createRoot } from "react-dom/client";
+import htm from "htm";
 
-    <!-- PONDĚLÍ -->
-    <article class="day" id="po" data-day="1">
-      <div class="day-header">
-        <div class="day-name">Pondělí</div>
-        <div class="day-date">20. dubna</div>
-        <div class="day-ornament"><span class="dot"></span></div>
-      </div>
-      <div class="section">
-        <div class="section-label">Polévka</div>
-        <div class="item">
-          <div class="name">Hovězí vývar s kapánín a zeleninou julienne <span class="allergens">(1, 3, 7, 9)</span></div>
-          <div class="price">29 Kč</div>
-        </div>
-        <div class="item">
-          <div class="name">Hráškový krém s krutony <span class="allergens">(7, 9)</span></div>
-          <div class="price">39 Kč</div>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-label">Local</div>
-        <div class="item">
-          <div class="name"><span class="gram">150g</span><strong>Smažený vepřový karbanátek, plněný hermelínem, batátové pyré</strong> <span class="allergens">(1, 3, 7)</span></div>
-          <div class="price">149 Kč</div>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-label">Vege</div>
-        <div class="item">
-          <div class="name"><span class="gram">150g</span><strong>Kuřecí plátek s omáčkou z pečených paprik, jasmínová rýže, jarní cibulka</strong> <span class="allergens">(7, 9)</span></div>
-          <div class="price">149 Kč</div>
-        </div>
-        <div class="item">
-          <div class="name"><span class="gram">250g</span><strong>Šafránové rizotto s pečenou řepou, sýr Gran Moravia</strong> <span class="allergens">(7)</span></div>
-          <div class="price">139 Kč</div>
-        </div>
-      </div>
-    </article>
+const html = htm.bind(React.createElement);
 
-    <!-- ÚTERÝ -->
-    <article class="day" id="ut" data-day="2">
-      <div class="day-header">
-        <div class="day-name">Úterý</div>
-        <div class="day-date">21. dubna</div>
-        <div class="day-ornament"><span class="dot"></span></div>
-      </div>
-      <div class="section">
-        <div class="section-label">Polévka</div>
-        <div class="item">
-          <div class="name">Gulášová polévka <span class="allergens">(1, 9)</span></div>
-          <div class="price">39 Kč</div>
-        </div>
-        <div class="item">
-          <div class="name">Pórková polévka s vejci <span class="allergens">(3, 7, 9)</span></div>
-          <div class="price">29 Kč</div>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-label">Local</div>
-        <div class="item">
-          <div class="name"><span class="gram">150g</span><strong>Vepřová pečeně se špekem, bramborové placky, smetanový špenát</strong> <span class="allergens">(1, 3, 7)</span></div>
-          <div class="price">149 Kč</div>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-label">Ethnic</div>
-        <div class="item">
-          <div class="name"><span class="gram">150g</span><strong>Kuřecí soté v červeném kari, kokosové mléko, divoká rýže</strong> <span class="allergens">(4, 9)</span></div>
-          <div class="price">149 Kč</div>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-label">Vege</div>
-        <div class="item">
-          <div class="name"><span class="gram">150g</span><strong>Smažený sýr, vařené brambory s pažitkou, tatarská omáčka</strong> <span class="allergens">(1, 3, 7, 10)</span></div>
-          <div class="price">139 Kč</div>
-        </div>
-      </div>
-    </article>
+// >>> MENU_DATA_BEGIN
+const MENU = {
+  weekRange: "20. 4. – 26. 4. 2026",
+  updated: "23. 4. 2026",
+  days: [
+    { id: "po", name: "Pondělí", date: "20. dubna", dayOfWeek: 1, sections: [
+      { label: "Polévka", items: [
+        { name: "Hovězí vývar s kapánín a zeleninou julienne", allergens: "1, 3, 7, 9", price: "29 Kč" },
+        { name: "Hráškový krém s krutony", allergens: "7, 9", price: "39 Kč" }
+      ]},
+      { label: "Local", items: [
+        { gram: "150g", name: "Smažený vepřový karbanátek, plněný hermelínem, batátové pyré", allergens: "1, 3, 7", price: "149 Kč" }
+      ]},
+      { label: "Vege", items: [
+        { gram: "150g", name: "Kuřecí plátek s omáčkou z pečených paprik, jasmínová rýže, jarní cibulka", allergens: "7, 9", price: "149 Kč" },
+        { gram: "250g", name: "Šafránové rizotto s pečenou řepou, sýr Gran Moravia", allergens: "7", price: "139 Kč" }
+      ]}
+    ]},
+    { id: "ut", name: "Úterý", date: "21. dubna", dayOfWeek: 2, sections: [
+      { label: "Polévka", items: [
+        { name: "Gulášová polévka", allergens: "1, 9", price: "39 Kč" },
+        { name: "Pórková polévka s vejci", allergens: "3, 7, 9", price: "29 Kč" }
+      ]},
+      { label: "Local", items: [
+        { gram: "150g", name: "Vepřová pečeně se špekem, bramborové placky, smetanový špenát", allergens: "1, 3, 7", price: "149 Kč" }
+      ]},
+      { label: "Ethnic", items: [
+        { gram: "150g", name: "Kuřecí soté v červeném kari, kokosové mléko, divoká rýže", allergens: "4, 9", price: "149 Kč" }
+      ]},
+      { label: "Vege", items: [
+        { gram: "150g", name: "Smažený sýr, vařené brambory s pažitkou, tatarská omáčka", allergens: "1, 3, 7, 10", price: "139 Kč" }
+      ]}
+    ]},
+    { id: "st", name: "Středa", date: "22. dubna", dayOfWeek: 3, sections: [
+      { label: "Polévka", items: [
+        { name: "Bramborová polévka s houbami", allergens: "9", price: "39 Kč" },
+        { name: "Zeleninový vývar s tarhoňou", allergens: "1, 3, 7, 9", price: "29 Kč" }
+      ]},
+      { label: "Local", items: [
+        { name: "Pštrosí vejce, bramborová kaše, sterilovaná okurka", allergens: "1.1, 3, 7, 10", price: "149 Kč" }
+      ]},
+      { label: "Ethnic", items: [
+        { gram: "150g", name: "Kuře Kung-Pao se zeleninou arašídy, smažené hranolky", allergens: "5, 6, 8", price: "139 Kč" }
+      ]},
+      { label: "Vege", items: [
+        { gram: "250g", name: "Zeleninové lasagne s bylinkovým bešamelem", allergens: "1, 3, 7", price: "149 Kč" }
+      ]}
+    ]},
+    { id: "ct", name: "Čtvrtek", date: "23. dubna", dayOfWeek: 4, sections: [
+      { label: "Polévka", items: [
+        { name: "Brokolicový krém", allergens: "7, 9", price: "39 Kč" },
+        { name: "Hovězí vývar s játrovými knedlíčky", allergens: "1, 3, 7, 9", price: "29 Kč" }
+      ]},
+      { label: "Local", items: [
+        { name: "Kuřecí steak zapečený se sýrem a broskví, pečené grenaille, salát Coleslaw", allergens: "3, 7, 10", price: "149 Kč" }
+      ]},
+      { label: "Ethnic", items: [
+        { gram: "250g", name: "Srbské rizotto s vepřovým masem, sýr, sterilovaná okurka", allergens: "7, 12", price: "149 Kč" }
+      ]},
+      { label: "Vege", items: [
+        { gram: "250g", name: "Smažený květák, vařené brambory, tatarská omáčka", allergens: "1, 3, 7", price: "139 Kč" }
+      ]}
+    ]},
+    { id: "pa", name: "Pátek", date: "24. dubna", dayOfWeek: 5, sections: [
+      { label: "Polévka", items: [
+        { name: "Dršťková polévka z hlívy ústřičné", allergens: "9", price: "29 Kč" },
+        { name: "Asijská polévka se zeleninou a kuřecím masem", allergens: "9, 12", price: "39 Kč" }
+      ]},
+      { label: "Local", items: [
+        { gram: "150g", name: "Hovězí guláš, houskové knedlíky, marinovaná červená cibule", allergens: "1, 3, 7", price: "149 Kč" }
+      ]},
+      { label: "Ethnic", items: [
+        { gram: "150g", name: "Smažená treska s bramborovou kaší, zelný salátek", allergens: "1, 3, 7, 9", price: "139 Kč" }
+      ]},
+      { label: "Vege", items: [
+        { gram: "250g", name: "Bramborové šišky s mákem a cukrem", allergens: "1, 3, 7", price: "129 Kč" }
+      ]}
+    ]},
+    { id: "so", name: "Sobota", date: "25. dubna", dayOfWeek: 6, sections: [
+      { label: "Polévka", items: [
+        { name: "Česneková polévka s vejci", allergens: "3, 9", price: "39 Kč" }
+      ]},
+      { label: "Local", items: [
+        { gram: "150g", name: "Smažený kuřecí řízek, vařené brambory s pažitkou, steril. okurka", allergens: "1, 3, 7, 12", price: "149 Kč" }
+      ]},
+      { label: "Vege", items: [
+        { gram: "250g", name: "Květákové placičky, jarní salátek s tvarohem", allergens: "1, 3, 7", price: "139 Kč" }
+      ]}
+    ]},
+    { id: "ne", name: "Neděle", date: "26. dubna", dayOfWeek: 0, sections: [
+      { label: "Polévka", items: [
+        { name: "Rajčatová polévka s celestýnskými nudlemi", allergens: "1, 3, 7", price: "39 Kč" }
+      ]},
+      { label: "Local", items: [
+        { gram: "150g", name: "Wok pánev s kuřecím masem, zelenina, jasmínová rýže", allergens: "6, 9", price: "149 Kč" }
+      ]},
+      { label: "Vege", items: [
+        { gram: "250g", name: "Zapečená brokolice se sýrem, vařené brambory, jogurtový dip", allergens: "3, 7", price: "139 Kč" }
+      ]}
+    ]}
+  ],
+  weekly: [
+    { category: "À la carte", items: [
+      { gram: "150g", name: "Duo smažených sýrů (gouda + hermelín), perfect tatarka", allergens: "1, 3, 7", price: "179 Kč" },
+      { gram: "200g", name: "Hovězí flank steak, zelené fazolky, slanina, demi glace", price: "240 Kč" },
+      { gram: "250g", name: "Vepřová panenka na rozmarýnu, omáčka ze zeleného pepře", allergens: "7", price: "195 Kč" },
+      { gram: "150g", name: "Perfect Burger (hovězí, slanina, čedar, kyselá okurka)", allergens: "1, 3, 7", price: "210 Kč" },
+      { gram: "120g", name: "Caesar salát s kuřecím masem a krutony", allergens: "1, 3, 4, 7", price: "185 Kč" }
+    ]},
+    { category: "Chef Speciál", items: [
+      { gram: "180g", name: "Grilovaný losos s chřestem, holandská omáčka", allergens: "1.1, 4, 7", price: "229 Kč" }
+    ]},
+    { category: "Pasta bar", items: [
+      { gram: "300g", name: "Linguine carbonara", allergens: "1, 3, 7", price: "209 Kč" },
+      { gram: "300g", name: "Linguine aglio olio e peperoncino", allergens: "1, 3, 7", price: "179 Kč" }
+    ]},
+    { category: "Přílohy", items: [
+      { gram: "200g", name: "Pečené grenaille", price: "45 Kč" },
+      { gram: "200g", name: "Grilovaná zelenina", price: "45 Kč" },
+      { gram: "200g", name: "Hranolky", price: "45 Kč" }
+    ]}
+  ]
+};
+// <<< MENU_DATA_END
 
-    <!-- STŘEDA -->
-    <article class="day" id="st" data-day="3">
-      <div class="day-header">
-        <div class="day-name">Středa</div>
-        <div class="day-date">22. dubna</div>
-        <div class="day-ornament"><span class="dot"></span></div>
-      </div>
-      <div class="section">
-        <div class="section-label">Polévka</div>
-        <div class="item">
-          <div class="name">Bramborová polévka s houbami <span class="allergens">(9)</span></div>
-          <div class="price">39 Kč</div>
-        </div>
-        <div class="item">
-          <div class="name">Zeleninový vývar s tarhoňou <span class="allergens">(1, 3, 7, 9)</span></div>
-          <div class="price">29 Kč</div>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-label">Local</div>
-        <div class="item">
-          <div class="name"><strong>Pštrosí vejce, bramborová kaše, sterilovaná okurka</strong> <span class="allergens">(1.1, 3, 7, 10)</span></div>
-          <div class="price">149 Kč</div>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-label">Ethnic</div>
-        <div class="item">
-          <div class="name"><span class="gram">150g</span><strong>Kuře Kung-Pao se zeleninou arašídy, smažené hranolky</strong> <span class="allergens">(5, 6, 8)</span></div>
-          <div class="price">139 Kč</div>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-label">Vege</div>
-        <div class="item">
-          <div class="name"><span class="gram">250g</span><strong>Zeleninové lasagne s bylinkovým bešamelem</strong> <span class="allergens">(1, 3, 7)</span></div>
-          <div class="price">149 Kč</div>
-        </div>
-      </div>
-    </article>
+// ========== SVG ICONS ==========
+const LogoIcon = () => html`
+  <svg viewBox="0 0 24 24" fill="none" width="24" height="24">
+    <path d="M7 2v8a3 3 0 0 0 3 3v9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M11 2v8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M15 2v20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M15 14c2.5 0 4-1.5 4-4V2c-2.5 0-4 1.5-4 4" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  </svg>
+`;
+const CalendarIcon = () => html`
+  <svg viewBox="0 0 24 24" fill="none">
+    <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+    <path d="M3 10h18M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+`;
+const ChefIcon = () => html`
+  <svg viewBox="0 0 24 24" fill="none">
+    <path d="M6 14a4 4 0 1 1 1.5-7.7A4 4 0 0 1 12 4a4 4 0 0 1 4.5 2.3A4 4 0 1 1 18 14H6z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M6 14v4a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-4" stroke="currentColor" stroke-width="2"/>
+  </svg>
+`;
+const SoupIcon = () => html`
+  <svg viewBox="0 0 24 24" fill="none">
+    <path d="M3 11h18a8 8 0 0 1-16 0z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M8 7c0-1 1-1 1-2s-1-1-1-2M12 7c0-1 1-1 1-2s-1-1-1-2M16 7c0-1 1-1 1-2s-1-1-1-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+  </svg>
+`;
+const PlateIcon = () => html`
+  <svg viewBox="0 0 24 24" fill="none">
+    <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+    <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="1.5"/>
+  </svg>
+`;
+const NoodleIcon = () => html`
+  <svg viewBox="0 0 24 24" fill="none">
+    <path d="M4 8c2-2 4-2 6 0s4 2 6 0 4-2 4-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M3 13c2-2 4-2 6 0s4 2 6 0 4-2 5-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M4 18c2-2 4-2 6 0s4 2 6 0 4-2 4-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+`;
+const LeafIcon = () => html`
+  <svg viewBox="0 0 24 24" fill="none">
+    <path d="M12 21c0-9 6-15 9-15-1 9-6 15-9 15z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M12 21c0-9-6-15-9-15 1 9 6 15 9 15z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  </svg>
+`;
+const BurgerIcon = () => html`
+  <svg viewBox="0 0 24 24" fill="none">
+    <path d="M4 9c0-3 3.5-5 8-5s8 2 8 5H4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M3 13h18M3 17c0 1 1 2 2 2h14c1 0 2-1 2-2H3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  </svg>
+`;
+const CroissantIcon = () => html`
+  <svg viewBox="0 0 24 24" fill="none">
+    <path d="M3 18l4-3c2-1.5 2-4 0-5l-2-2 6-2c4-1 9 4 8 8l-2 6-2-2c-1-2-3.5-2-5 0l-3 4-4-4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  </svg>
+`;
+const PizzaIcon = () => html`
+  <svg viewBox="0 0 24 24" fill="none">
+    <path d="M12 3l9 18H3z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    <circle cx="10" cy="14" r="1" fill="currentColor"/>
+    <circle cx="14" cy="14" r="1" fill="currentColor"/>
+    <circle cx="12" cy="18" r="1" fill="currentColor"/>
+  </svg>
+`;
+const AppleIcon = () => html`
+  <svg viewBox="0 0 24 24" fill="none">
+    <path d="M12 7c-3-3-9-1-9 5 0 5 4 9 6 9s1-1 3-1 1 1 3 1 6-4 6-9c0-6-6-8-9-5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M12 7V4M12 4c1-2 3-2 4-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+`;
+const CupIcon = () => html`
+  <svg viewBox="0 0 24 24" fill="none">
+    <path d="M5 8h12v8a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V8z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M17 11h2a2 2 0 0 1 0 4h-2" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M9 5c0-1 1-1 1-2M13 5c0-1 1-1 1-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+  </svg>
+`;
 
-    <!-- ČTVRTEK -->
-    <article class="day" id="ct" data-day="4">
-      <div class="day-header">
-        <div class="day-name">Čtvrtek</div>
-        <div class="day-date">23. dubna</div>
-        <div class="day-ornament"><span class="dot"></span></div>
-      </div>
-      <div class="section">
-        <div class="section-label">Polévka</div>
-        <div class="item">
-          <div class="name">Brokolicový krém <span class="allergens">(7, 9)</span></div>
-          <div class="price">39 Kč</div>
-        </div>
-        <div class="item">
-          <div class="name">Hovězí vývar s játrovými knedlíčky <span class="allergens">(1, 3, 7, 9)</span></div>
-          <div class="price">29 Kč</div>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-label">Local</div>
-        <div class="item">
-          <div class="name"><strong>Kuřecí steak zapečený se sýrem a broskví, pečené grenaille, salát Coleslaw</strong> <span class="allergens">(3, 7, 10)</span></div>
-          <div class="price">149 Kč</div>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-label">Ethnic</div>
-        <div class="item">
-          <div class="name"><span class="gram">250g</span><strong>Srbské rizotto s vepřovým masem, sýr, sterilovaná okurka</strong> <span class="allergens">(7, 12)</span></div>
-          <div class="price">149 Kč</div>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-label">Vege</div>
-        <div class="item">
-          <div class="name"><span class="gram">250g</span><strong>Smažený květák, vařené brambory, tatarská omáčka</strong> <span class="allergens">(1, 3, 7)</span></div>
-          <div class="price">139 Kč</div>
-        </div>
-      </div>
-    </article>
+const SECTION_ICONS = {
+  "Polévka": SoupIcon,
+  "Local":   PlateIcon,
+  "Ethnic":  NoodleIcon,
+  "Vege":    LeafIcon
+};
 
-    <!-- PÁTEK -->
-    <article class="day" id="pa" data-day="5">
-      <div class="day-header">
-        <div class="day-name">Pátek</div>
-        <div class="day-date">24. dubna</div>
-        <div class="day-ornament"><span class="dot"></span></div>
-      </div>
-      <div class="section">
-        <div class="section-label">Polévka</div>
-        <div class="item">
-          <div class="name">Dršťková polévka z hlívy ústřičné <span class="allergens">(9)</span></div>
-          <div class="price">29 Kč</div>
-        </div>
-        <div class="item">
-          <div class="name">Asijská polévka se zeleninou a kuřecím masem <span class="allergens">(9, 12)</span></div>
-          <div class="price">39 Kč</div>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-label">Local</div>
-        <div class="item">
-          <div class="name"><span class="gram">150g</span><strong>Hovězí guláš, houskové knedlíky, marinovaná červená cibule</strong> <span class="allergens">(1, 3, 7)</span></div>
-          <div class="price">149 Kč</div>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-label">Ethnic</div>
-        <div class="item">
-          <div class="name"><span class="gram">150g</span><strong>Smažená treska s bramborovou kaší, zelný salátek</strong> <span class="allergens">(1, 3, 7, 9)</span></div>
-          <div class="price">139 Kč</div>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-label">Vege</div>
-        <div class="item">
-          <div class="name"><span class="gram">250g</span><strong>Bramborové šišky s mákem a cukrem</strong> <span class="allergens">(1, 3, 7)</span></div>
-          <div class="price">129 Kč</div>
-        </div>
-      </div>
-    </article>
+// ========== APP ==========
+function App() {
+  const todayIdx = useMemo(() => {
+    const dow = new Date().getDay();
+    const idx = MENU.days.findIndex(d => d.dayOfWeek === dow);
+    return idx >= 0 ? idx : 0;
+  }, []);
+  const [active, setActive] = useState(todayIdx);
+  const day = MENU.days[active];
 
-    <!-- SOBOTA -->
-    <article class="day" id="so" data-day="6">
-      <div class="day-header">
-        <div class="day-name">Sobota</div>
-        <div class="day-date">25. dubna</div>
-        <div class="day-ornament"><span class="dot"></span></div>
-      </div>
-      <div class="section">
-        <div class="section-label">Polévka</div>
-        <div class="item">
-          <div class="name">Česneková polévka s vejci <span class="allergens">(3, 9)</span></div>
-          <div class="price">39 Kč</div>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-label">Local</div>
-        <div class="item">
-          <div class="name"><span class="gram">150g</span><strong>Smažený kuřecí řízek, vařené brambory s pažitkou, steril. okurka</strong> <span class="allergens">(1, 3, 7, 12)</span></div>
-          <div class="price">149 Kč</div>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-label">Vege</div>
-        <div class="item">
-          <div class="name"><span class="gram">250g</span><strong>Květákové placičky, jarní salátek s tvarohem</strong> <span class="allergens">(1, 3, 7)</span></div>
-          <div class="price">139 Kč</div>
-        </div>
-      </div>
-    </article>
-
-    <!-- NEDĚLE -->
-    <article class="day" id="ne" data-day="0">
-      <div class="day-header">
-        <div class="day-name">Neděle</div>
-        <div class="day-date">26. dubna</div>
-        <div class="day-ornament"><span class="dot"></span></div>
-      </div>
-      <div class="section">
-        <div class="section-label">Polévka</div>
-        <div class="item">
-          <div class="name">Rajčatová polévka s celestýnskými nudlemi <span class="allergens">(1, 3, 7)</span></div>
-          <div class="price">39 Kč</div>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-label">Local</div>
-        <div class="item">
-          <div class="name"><span class="gram">150g</span><strong>Wok pánev s kuřecím masem, zelenina, jasmínová rýže</strong> <span class="allergens">(6, 9)</span></div>
-          <div class="price">149 Kč</div>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-label">Vege</div>
-        <div class="item">
-          <div class="name"><span class="gram">250g</span><strong>Zapečená brokolice se sýrem, vařené brambory, jogurtový dip</strong> <span class="allergens">(3, 7)</span></div>
-          <div class="price">139 Kč</div>
-        </div>
-      </div>
-    </article>
-
-  </div>
-
-  <!-- TÝDENNÍ MENU -->
-  <section class="weekly" id="tyden">
-  <!-- always visible alongside the daily menu -->
-    <div class="weekly-header">
-      <h2>Týdenní menu</h2>
-      <div class="sub">Dle aktuální nabídky</div>
-      <div class="day-ornament"><span class="dot"></span></div>
-    </div>
-
-    <div class="weekly-grid">
-      <div class="weekly-cat">
-        <h3>À la carte</h3>
-        <div class="item">
-          <div class="name"><span class="gram">150g</span><strong>Duo smažených sýrů</strong> (100g gouda a 50g hermelín), perfect tatarka <span class="allergens">(1, 3, 7)</span></div>
-          <div class="price">179 Kč</div>
-        </div>
-        <div class="item">
-          <div class="name"><span class="gram">200g</span><strong>Hovězí flank steak</strong>, zelené fazolky, slanina, demi glace</div>
-          <div class="price">240 Kč</div>
-        </div>
-        <div class="item">
-          <div class="name"><span class="gram">250g</span><strong>Vepřová panenka na rozmarýnu</strong>, omáčka ze zeleného pepře <span class="allergens">(7)</span></div>
-          <div class="price">195 Kč</div>
-        </div>
-        <div class="item">
-          <div class="name"><span class="gram">150g</span><strong>Perfect Burger</strong> (mleté hovězí, slanina, čedar, kyselá okurka) <span class="allergens">(1, 3, 7)</span></div>
-          <div class="price">210 Kč</div>
-        </div>
-        <div class="item">
-          <div class="name"><span class="gram">120g</span><strong>Caesar salát</strong> s kuřecím masem a krutony <span class="allergens">(1, 3, 4, 7)</span></div>
-          <div class="price">185 Kč</div>
-        </div>
+  return html`
+    <${React.Fragment}>
+      <div className="bg-decor">
+        <div className="bg-icon s1" style=${{ color: 'var(--coral)' }}><${CroissantIcon} /></div>
+        <div className="bg-icon s2" style=${{ color: 'var(--pistachio)' }}><${LeafIcon} /></div>
+        <div className="bg-icon s3" style=${{ color: 'var(--sun-deep)' }}><${PizzaIcon} /></div>
+        <div className="bg-icon s4" style=${{ color: 'var(--berry)' }}><${BurgerIcon} /></div>
+        <div className="bg-icon s5" style=${{ color: 'var(--coral-deep)' }}><${SoupIcon} /></div>
+        <div className="bg-icon s6" style=${{ color: 'var(--pistachio-deep)' }}><${AppleIcon} /></div>
+        <div className="bg-icon s7" style=${{ color: 'var(--sun)' }}><${CupIcon} /></div>
+        <div className="bg-icon s8" style=${{ color: 'var(--coral)' }}><${NoodleIcon} /></div>
       </div>
 
-      <div class="weekly-cat">
-        <h3>Chef Speciál</h3>
-        <div class="item">
-          <div class="name"><span class="gram">180g</span><strong>Grilovaný losos s chřestem</strong>, holandská omáčka <span class="allergens">(1.1, 4, 7)</span></div>
-          <div class="price">229 Kč</div>
+      <div className="window">
+        <header className="window-header">
+          <div className="brand">
+            <div className="brand-logo"><${LogoIcon} /></div>
+            <div className="brand-text">
+              <div className="brand-name">TV Nova</div>
+              <div className="brand-sub">Perfect Canteen</div>
+            </div>
+          </div>
+          <div className="meta">
+            <div className="week-pill">
+              <${CalendarIcon} />
+              <span>${MENU.weekRange}</span>
+            </div>
+            <div className="updated">Aktualizováno · ${MENU.updated}</div>
+          </div>
+        </header>
+
+        <div className="tabs">
+          ${MENU.days.map((d, i) => html`
+            <button
+              key=${d.id}
+              className=${"tab" + (i === active ? " active" : "") + (i === todayIdx ? " is-today" : "")}
+              style=${{ "--i": i }}
+              onClick=${() => setActive(i)}
+            >
+              <span className="tab-name">${d.name}</span>
+              <span className="tab-date">${d.date}</span>
+            </button>
+          `)}
         </div>
-        <h3 class="spaced">Pasta bar</h3>
-        <div class="item">
-          <div class="name"><span class="gram">300g</span><strong>Linguine carbonara</strong> <span class="allergens">(1, 3, 7)</span></div>
-          <div class="price">209 Kč</div>
+
+        <div className="body">
+          <main className="today" key=${day.id}>
+            ${day.sections.map((s, si) => {
+              const Icon = SECTION_ICONS[s.label] || PlateIcon;
+              const cls = s.label.toLowerCase();
+              return html`
+                <section className="section" style=${{ "--i": si }} key=${si}>
+                  <div className="section-head">
+                    <div className=${"section-icon " + cls}><${Icon} /></div>
+                    <div className="section-title">${s.label}</div>
+                  </div>
+                  <div className="items">
+                    ${s.items.map((it, ii) => html`
+                      <div className="item" key=${ii}>
+                        <div className="name">
+                          ${it.gram ? html`<span className="gram">${it.gram}</span>` : null}
+                          <strong>${it.name}</strong>
+                          ${it.allergens ? html`<span className="all">(${it.allergens})</span>` : null}
+                        </div>
+                        <div className="price">${it.price}</div>
+                      </div>
+                    `)}
+                  </div>
+                </section>
+              `;
+            })}
+          </main>
+
+          <aside className="weekly">
+            <div className="weekly-title"><${ChefIcon} /> Týdenní menu</div>
+            <div className="weekly-sub">Dle aktuální nabídky</div>
+            ${MENU.weekly.map((cat, ci) => html`
+              <div className="cat" style=${{ "--i": ci }} key=${ci}>
+                <h4>${cat.category}</h4>
+                <div className="cat-items">
+                  ${cat.items.map((it, ii) => html`
+                    <div className="item" key=${ii}>
+                      <div className="name">
+                        ${it.gram ? html`<span className="gram">${it.gram}</span>` : null}
+                        <strong>${it.name}</strong>
+                        ${it.allergens ? html`<span className="all">(${it.allergens})</span>` : null}
+                      </div>
+                      <div className="price">${it.price}</div>
+                    </div>
+                  `)}
+                </div>
+              </div>
+            `)}
+          </aside>
         </div>
-        <div class="item">
-          <div class="name"><span class="gram">300g</span><strong>Linguine aglio olio e peperoncino</strong> <span class="allergens">(1, 3, 7)</span></div>
-          <div class="price">179 Kč</div>
+
+        <div className="window-footer">
+          <a href="https://www.menubot.cz/app/users/dailymenu-pdf.php?hash=pctvnova54985828525655845&lang=_a&output=&output1=&orientation=&v=1776933465" target="_blank">menubot.cz</a>
+          <span className="sep">·</span>
+          tvnova@eatperfect.cz
         </div>
       </div>
+    <//>
+  `;
+}
 
-      <div class="weekly-cat">
-        <h3>Přílohy</h3>
-        <div class="item">
-          <div class="name"><span class="gram">200g</span><strong>Pečené grenaille</strong></div>
-          <div class="price">45 Kč</div>
-        </div>
-        <div class="item">
-          <div class="name"><span class="gram">200g</span><strong>Grilovaná zelenina</strong></div>
-          <div class="price">45 Kč</div>
-        </div>
-        <div class="item">
-          <div class="name"><span class="gram">200g</span><strong>Hranolky</strong></div>
-          <div class="price">45 Kč</div>
-        </div>
-      </div>
-    </div>
-  </section>
-  </div><!-- /menu-layout -->
-
-  <div class="legend">
-    <strong>Legenda alergenů</strong>
-    1) Obiloviny obsahující lepek (1a pšenice, 1b žito, 1c ječmen, 1d oves, 1e špalda, 1f kamut),
-    2) Korýši, 3) Vejce, 4) Ryby, 5) Arašídy, 6) Sója, 7) Mléko,
-    8) Skořápkové plody (8a mandle, 8b lískové, 8c vlašské, 8d kešu, 8e pekanové, 8f para, 8g pistácie, 8h makadamie),
-    9) Celer, 10) Hořčice, 11) Sezam, 12) Oxid siřičitý, 13) Vlčí bob, 14) Měkkýši.
-    Pokrmy připravujeme z čerstvých surovin od prověřených dodavatelů. Gramáž masa je uvedena v syrovém stavu.
-  </div>
-
-  <footer>
-    <a href="https://www.menubot.cz/app/users/dailymenu-pdf.php?hash=pctvnova54985828525655845&lang=_a&output=&output1=&orientation=&v=1776933465" target="_blank">Zdroj · menubot.cz</a>
-    <span class="sep">·</span>
-    Perfect Canteen TV Nova
-    <span class="sep">·</span>
-    tvnova@eatperfect.cz
-  </footer>
-
-</div>
-
-<script>
-  (function() {
-    const today = new Date().getDay();
-    const dayCard = document.querySelector('.day[data-day="' + today + '"]');
-    if (dayCard) {
-      dayCard.classList.add('today');
-      const navLink = document.querySelector('.nav a[href="#' + dayCard.id + '"]');
-      if (navLink) navLink.classList.add('today');
-    } else {
-      document.body.classList.add('expanded');
-    }
-    const btn = document.getElementById('toggleWeek');
-    if (btn) {
-      btn.addEventListener('click', () => {
-        document.body.classList.toggle('expanded');
-        if (document.body.classList.contains('expanded')) {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      });
-    }
-  })();
+createRoot(document.getElementById("root")).render(html`<${App} />`);
 </script>
 </body>
 </html>
