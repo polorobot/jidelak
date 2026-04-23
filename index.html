@@ -272,17 +272,30 @@
     <a href="#po">Pondělí</a>
     <a href="#ut">Úterý</a>
     <a href="#st">Středa</a>
-    <a href="#ct" class="today">Čtvrtek</a>
+    <a href="#ct">Čtvrtek</a>
     <a href="#pa">Pátek</a>
     <a href="#so">Sobota</a>
     <a href="#ne">Neděle</a>
     <a href="#tyden">Týdenní menu</a>
   </nav>
 
+  <script>
+    (function() {
+      const today = new Date().getDay();
+      const dayCard = document.querySelector('.day[data-day="' + today + '"]');
+      if (dayCard) {
+        dayCard.classList.add('today');
+        const id = dayCard.id;
+        const navLink = document.querySelector('.nav a[href="#' + id + '"]');
+        if (navLink) navLink.classList.add('today');
+      }
+    })();
+  </script>
+
   <div class="grid">
 
     <!-- PONDĚLÍ -->
-    <article class="day" id="po">
+    <article class="day" id="po" data-day="1">
       <h2>Pondělí</h2>
       <div class="date">20. dubna</div>
 
@@ -320,7 +333,7 @@
     </article>
 
     <!-- ÚTERÝ -->
-    <article class="day" id="ut">
+    <article class="day" id="ut" data-day="2">
       <h2>Úterý</h2>
       <div class="date">21. dubna</div>
 
@@ -362,7 +375,7 @@
     </article>
 
     <!-- STŘEDA -->
-    <article class="day" id="st">
+    <article class="day" id="st" data-day="3">
       <h2>Středa</h2>
       <div class="date">22. dubna</div>
 
@@ -404,7 +417,7 @@
     </article>
 
     <!-- ČTVRTEK -->
-    <article class="day today" id="ct">
+    <article class="day" id="ct" data-day="4">
       <h2>Čtvrtek</h2>
       <div class="date">23. dubna</div>
 
@@ -446,7 +459,7 @@
     </article>
 
     <!-- PÁTEK -->
-    <article class="day" id="pa">
+    <article class="day" id="pa" data-day="5">
       <h2>Pátek</h2>
       <div class="date">24. dubna</div>
 
@@ -488,7 +501,7 @@
     </article>
 
     <!-- SOBOTA -->
-    <article class="day" id="so">
+    <article class="day" id="so" data-day="6">
       <h2>Sobota</h2>
       <div class="date">25. dubna</div>
 
@@ -518,7 +531,7 @@
     </article>
 
     <!-- NEDĚLE -->
-    <article class="day" id="ne">
+    <article class="day" id="ne" data-day="0">
       <h2>Neděle</h2>
       <div class="date">26. dubna</div>
 
