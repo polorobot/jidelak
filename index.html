@@ -4,92 +4,160 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TV Nova — Denní menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #faf7f2;
-    --card: #ffffff;
-    --ink: #1a1612;
-    --muted: #7a6f63;
-    --line: #ece5db;
-    --accent: #e85d1f;
-    --accent-soft: #fbe8dc;
-    --gold: #c89b3c;
-    --green: #6b8e3d;
-    --red: #b03030;
-    --shadow: 0 4px 18px rgba(50, 30, 10, 0.06);
+    --bg: #f4ede0;
+    --bg-deep: #ebe2d1;
+    --card: #fdfaf2;
+    --ink: #14110d;
+    --ink-soft: #3a342b;
+    --muted: #8a7e6c;
+    --line: #d6cbb6;
+    --hairline: #c9bda4;
+    --gold: #a8853a;
+    --gold-soft: #d9bc78;
+    --gold-deep: #7a5f24;
+    --accent: #8b2a1f;
+    --shadow-sm: 0 2px 8px rgba(70, 50, 20, 0.06);
+    --shadow: 0 12px 40px rgba(70, 50, 20, 0.10);
+    --shadow-lg: 0 24px 70px rgba(40, 30, 15, 0.14);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { background: var(--bg); color: var(--ink); }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    line-height: 1.5;
-    padding: 32px 20px 80px;
-    -webkit-font-smoothing: antialiased;
+  html, body {
+    background: var(--bg);
+    background-image:
+      radial-gradient(circle at 20% 0%, rgba(217, 188, 120, 0.12) 0%, transparent 50%),
+      radial-gradient(circle at 80% 100%, rgba(139, 42, 31, 0.06) 0%, transparent 50%);
+    background-attachment: fixed;
+    color: var(--ink);
+    min-height: 100%;
   }
-  .wrap { max-width: 1180px; margin: 0 auto; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    padding: 56px 24px 100px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .wrap { max-width: 1240px; margin: 0 auto; }
 
+  /* ---------- HERO ---------- */
   header.hero {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 16px;
-    padding-bottom: 22px;
-    margin-bottom: 28px;
-    border-bottom: 2px solid var(--ink);
+    text-align: center;
+    margin-bottom: 56px;
+    position: relative;
+  }
+  .crest {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    color: var(--gold);
+    margin-bottom: 24px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+  }
+  .crest::before, .crest::after {
+    content: "";
+    width: 50px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
   }
   .brand h1 {
-    font-size: clamp(28px, 4vw, 44px);
-    font-weight: 800;
-    letter-spacing: -0.02em;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(48px, 7vw, 86px);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: var(--ink);
   }
   .brand .tagline {
-    color: var(--muted);
-    font-size: 14px;
-    margin-top: 4px;
-    letter-spacing: 0.02em;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--ink-soft);
+    font-size: clamp(16px, 1.4vw, 20px);
+    margin-top: 14px;
   }
-  .meta {
-    text-align: right;
-    font-size: 14px;
-    color: var(--muted);
+  .ornament {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin: 30px auto 0;
+    color: var(--gold);
   }
-  .meta-text { display: flex; flex-direction: column; }
-  .meta .week {
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: -0.01em;
+  .ornament .line {
+    width: 80px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.6;
   }
-  .meta .updated { margin-top: 4px; }
+  .ornament .diamond {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
 
+  .meta-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .week {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: var(--gold-deep);
+    letter-spacing: 0.04em;
+  }
+  .updated {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  /* ---------- TOGGLE ---------- */
+  .toggle-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+  }
   .toggle-btn {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    background: var(--card);
+    gap: 10px;
+    background: transparent;
     color: var(--ink);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 8px 16px 8px 12px;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
+    border: 1px solid var(--gold);
+    border-radius: 0;
+    padding: 12px 22px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
     cursor: pointer;
-    font-family: inherit;
-    transition: all 0.15s ease;
-    box-shadow: var(--shadow);
+    transition: all 0.25s ease;
+    position: relative;
   }
   .toggle-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    transform: translateY(-1px);
+    background: var(--ink);
+    color: var(--card);
+    border-color: var(--ink);
   }
-  .toggle-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .toggle-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
   .toggle-btn .icon-week,
   .toggle-btn .label-week { display: inline-flex; }
   .toggle-btn .icon-today,
@@ -99,36 +167,49 @@
   body.expanded .toggle-btn .icon-today,
   body.expanded .toggle-btn .label-today { display: inline-flex; }
 
+  /* ---------- NAV ---------- */
   .nav {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 28px;
+    justify-content: center;
+    gap: 4px;
+    margin: 40px 0 36px;
+    padding: 18px 0;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
   }
   .nav a {
     text-decoration: none;
-    color: var(--ink);
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    padding: 8px 14px;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    padding: 8px 18px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
-    transition: all 0.15s ease;
+    transition: color 0.2s ease;
+    position: relative;
   }
-  .nav a:hover { border-color: var(--accent); color: var(--accent); }
+  .nav a:hover { color: var(--gold-deep); }
   .nav a.today {
-    background: var(--ink);
-    color: #fff;
-    border-color: var(--ink);
+    color: var(--gold-deep);
+  }
+  .nav a.today::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
   }
 
+  /* ---------- GRID ---------- */
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 32px;
   }
 
   /* Collapsed view: only today */
@@ -140,171 +221,272 @@
     justify-content: center;
   }
   body:not(.expanded) .day.today {
-    max-width: 640px;
+    max-width: 720px;
     width: 100%;
-    padding: 32px;
+    padding: 56px 64px;
   }
-  body:not(.expanded) .day.today h2 { font-size: 32px; }
-  body:not(.expanded) .day.today .item .name { font-size: 16px; }
-  body:not(.expanded) .day.today .item .price { font-size: 16px; }
+  body:not(.expanded) .day.today .day-name { font-size: clamp(40px, 5vw, 56px); }
+  body:not(.expanded) .day.today .item { padding: 14px 0; }
+  body:not(.expanded) .day.today .item .name { font-size: 17px; }
+
+  /* ---------- DAY CARD ---------- */
   .day {
     background: var(--card);
-    border-radius: 16px;
-    padding: 24px;
+    padding: 40px 36px;
     box-shadow: var(--shadow);
-    border: 1px solid var(--line);
+    border: 1px solid rgba(168, 133, 58, 0.15);
     position: relative;
-    scroll-margin-top: 20px;
+    scroll-margin-top: 24px;
+  }
+  .day::before {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    border: 1px solid rgba(168, 133, 58, 0.18);
+    pointer-events: none;
   }
   .day.today {
-    border-color: var(--accent);
-    box-shadow: 0 6px 26px rgba(232, 93, 31, 0.18);
+    background: var(--card);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--gold);
   }
   .day.today::before {
-    content: "DNES";
-    position: absolute;
-    top: -10px;
-    right: 18px;
-    background: var(--accent);
-    color: #fff;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    padding: 4px 10px;
-    border-radius: 6px;
+    border-color: var(--gold);
   }
-  .day h2 {
-    font-size: 24px;
-    font-weight: 800;
+  .day-header {
+    text-align: center;
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .day-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 500;
+    font-size: 38px;
+    line-height: 1;
     letter-spacing: -0.01em;
-    margin-bottom: 4px;
+    color: var(--ink);
   }
-  .day .date {
+  .day-date {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
     color: var(--muted);
-    font-size: 13px;
-    margin-bottom: 18px;
+    font-size: 16px;
+    margin-top: 8px;
+  }
+  .day-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 16px auto 0;
+    color: var(--gold);
+  }
+  .day-ornament::before, .day-ornament::after {
+    content: "";
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+  .day-ornament .dot {
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    transform: rotate(45deg);
   }
 
-  .section { margin-top: 16px; }
+  .section { margin-top: 28px; }
   .section:first-of-type { margin-top: 0; }
   .section-label {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.36em;
     text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 4px;
-    margin-bottom: 10px;
+    color: var(--gold-deep);
+    margin-bottom: 14px;
+    position: relative;
   }
-  .label-polevka { background: #fde9e8; color: #b03030; }
-  .label-local   { background: #fbe8dc; color: var(--accent); }
-  .label-ethnic  { background: #f4e8c6; color: #8a6a14; }
-  .label-vege    { background: #e2efce; color: #4f6e2a; }
+  .section-label::before, .section-label::after {
+    content: "·";
+    margin: 0 10px;
+    opacity: 0.5;
+  }
 
   .item {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 8px 0;
-    border-bottom: 1px dashed var(--line);
+    align-items: baseline;
+    gap: 8px;
+    padding: 11px 0;
+    border-bottom: 1px dotted var(--hairline);
   }
   .item:last-child { border-bottom: none; }
   .item .name {
     flex: 1;
     font-size: 15px;
+    color: var(--ink-soft);
+    font-weight: 400;
+    line-height: 1.4;
   }
   .item .name strong {
-    font-weight: 600;
+    font-weight: 500;
     color: var(--ink);
   }
   .item .name .gram {
     color: var(--muted);
-    font-weight: 500;
-    margin-right: 4px;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 16px;
+    margin-right: 6px;
   }
   .item .allergens {
     display: inline-block;
     color: var(--muted);
-    font-size: 11px;
+    font-size: 10px;
     margin-left: 4px;
+    letter-spacing: 0.04em;
+    font-style: italic;
+  }
+  .item .leader {
+    flex: 0 1 auto;
+    border-bottom: 1px dotted var(--hairline);
+    min-width: 16px;
+    flex-grow: 0.3;
+    align-self: center;
+    transform: translateY(-3px);
+    opacity: 0.7;
   }
   .item .price {
-    font-weight: 700;
-    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 600;
+    color: var(--gold-deep);
     white-space: nowrap;
-    font-size: 15px;
+    font-size: 17px;
+    letter-spacing: 0.02em;
   }
 
-  /* Weekly section */
+  /* ---------- WEEKLY ---------- */
   .weekly {
-    margin-top: 48px;
-    background: linear-gradient(135deg, #1a1612 0%, #2b231b 100%);
-    color: #f5efe6;
-    border-radius: 20px;
-    padding: 36px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    margin-top: 64px;
+    padding: 56px 48px;
+    background: linear-gradient(180deg, #1a1612 0%, #0e0b08 100%);
+    color: #f0e6d3;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--gold-deep);
+    position: relative;
+  }
+  .weekly::before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    border: 1px solid rgba(168, 133, 58, 0.4);
+    pointer-events: none;
+  }
+  .weekly-header {
+    text-align: center;
+    margin-bottom: 40px;
   }
   .weekly h2 {
-    font-size: 28px;
-    font-weight: 800;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 500;
+    font-size: clamp(36px, 4vw, 48px);
+    color: #f5ecd9;
     letter-spacing: -0.01em;
-    margin-bottom: 6px;
+    line-height: 1;
   }
   .weekly .sub {
-    color: #c9bfb1;
-    font-size: 14px;
-    margin-bottom: 24px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-style: italic;
+    color: var(--gold-soft);
+    font-size: 17px;
+    margin-top: 10px;
   }
+  .weekly .day-ornament::before, .weekly .day-ornament::after {
+    background: var(--gold-soft);
+  }
+  .weekly .day-ornament .dot { background: var(--gold-soft); }
   .weekly-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 26px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
   }
   .weekly-cat h3 {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.16em;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.36em;
     text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 12px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid rgba(200, 155, 60, 0.3);
+    color: var(--gold-soft);
+    text-align: center;
+    margin-bottom: 18px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(168, 133, 58, 0.3);
   }
+  .weekly-cat h3.spaced { margin-top: 32px; }
   .weekly .item {
-    border-bottom-color: rgba(255,255,255,0.08);
+    border-bottom-color: rgba(168, 133, 58, 0.18);
   }
-  .weekly .item .name { color: #f5efe6; }
-  .weekly .item .name strong { color: #fff; }
-  .weekly .item .name .gram { color: #c9bfb1; }
-  .weekly .item .allergens { color: #998b76; }
-  .weekly .item .price { color: var(--gold); }
+  .weekly .item .name { color: #d8cdb8; }
+  .weekly .item .name strong { color: #f5ecd9; font-weight: 500; }
+  .weekly .item .name .gram { color: #998a6e; }
+  .weekly .item .allergens { color: #8a7c5f; }
+  .weekly .item .price { color: var(--gold-soft); }
 
+  /* ---------- LEGEND ---------- */
   .legend {
-    margin-top: 36px;
-    padding: 20px 24px;
+    margin-top: 48px;
+    padding: 28px 32px;
     background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    font-size: 12px;
+    border: 1px solid rgba(168, 133, 58, 0.2);
+    font-size: 11px;
     color: var(--muted);
-    line-height: 1.7;
+    line-height: 1.85;
+    text-align: center;
+    font-style: italic;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 14px;
   }
-  .legend strong { color: var(--ink); }
+  .legend strong {
+    color: var(--ink);
+    font-style: normal;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+    color: var(--gold-deep);
+  }
 
   footer {
-    margin-top: 32px;
+    margin-top: 40px;
     text-align: center;
     color: var(--muted);
-    font-size: 12px;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
   }
-  footer a { color: var(--accent); text-decoration: none; }
+  footer a {
+    color: var(--gold-deep);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 1px;
+  }
+  footer .sep { margin: 0 12px; opacity: 0.5; }
 
-  @media (max-width: 600px) {
-    body { padding: 20px 14px 60px; }
-    .day { padding: 20px; }
-    .weekly { padding: 24px; }
+  @media (max-width: 700px) {
+    body { padding: 36px 16px 60px; }
+    .day { padding: 32px 24px; }
+    body:not(.expanded) .day.today { padding: 36px 28px; }
+    .weekly { padding: 36px 24px; }
+    .meta-bar { gap: 18px; }
   }
 </style>
 </head>
@@ -312,18 +494,24 @@
 <div class="wrap">
 
   <header class="hero">
+    <div class="crest">Perfect Canteen</div>
     <div class="brand">
       <h1>TV Nova</h1>
-      <div class="tagline">O kus lepší jídlo každý den · Perfect Canteen</div>
+      <div class="tagline">O kus lepší jídlo každý den</div>
     </div>
-    <div class="meta">
-      <div class="meta-text">
-        <div class="week">20. 4. – 26. 4. 2026</div>
-        <div class="updated">Aktualizováno: 23. 4. 2026</div>
-      </div>
+    <div class="ornament">
+      <span class="line"></span>
+      <span class="diamond"></span>
+      <span class="line"></span>
+    </div>
+    <div class="meta-bar">
+      <div class="week">20. 4. – 26. 4. 2026</div>
+      <div class="updated">Aktualizováno · 23. 4. 2026</div>
+    </div>
+    <div class="toggle-wrap">
       <button id="toggleWeek" class="toggle-btn" type="button" aria-label="Přepnout zobrazení">
-        <svg class="icon-week" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        <svg class="icon-today" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/><path d="M5 5v14" opacity="0"/></svg>
+        <svg class="icon-week" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="0"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <svg class="icon-today" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
         <span class="label-week">Celý týden</span>
         <span class="label-today">Jen dnes</span>
       </button>
@@ -345,11 +533,13 @@
 
     <!-- PONDĚLÍ -->
     <article class="day" id="po" data-day="1">
-      <h2>Pondělí</h2>
-      <div class="date">20. dubna</div>
-
+      <div class="day-header">
+        <div class="day-name">Pondělí</div>
+        <div class="day-date">20. dubna</div>
+        <div class="day-ornament"><span class="dot"></span></div>
+      </div>
       <div class="section">
-        <div class="section-label label-polevka">Polévka</div>
+        <div class="section-label">Polévka</div>
         <div class="item">
           <div class="name">Hovězí vývar s kapánín a zeleninou julienne <span class="allergens">(1, 3, 7, 9)</span></div>
           <div class="price">29 Kč</div>
@@ -359,17 +549,15 @@
           <div class="price">39 Kč</div>
         </div>
       </div>
-
       <div class="section">
-        <div class="section-label label-local">Local</div>
+        <div class="section-label">Local</div>
         <div class="item">
           <div class="name"><span class="gram">150g</span><strong>Smažený vepřový karbanátek, plněný hermelínem, batátové pyré</strong> <span class="allergens">(1, 3, 7)</span></div>
           <div class="price">149 Kč</div>
         </div>
       </div>
-
       <div class="section">
-        <div class="section-label label-vege">Vege</div>
+        <div class="section-label">Vege</div>
         <div class="item">
           <div class="name"><span class="gram">150g</span><strong>Kuřecí plátek s omáčkou z pečených paprik, jasmínová rýže, jarní cibulka</strong> <span class="allergens">(7, 9)</span></div>
           <div class="price">149 Kč</div>
@@ -383,11 +571,13 @@
 
     <!-- ÚTERÝ -->
     <article class="day" id="ut" data-day="2">
-      <h2>Úterý</h2>
-      <div class="date">21. dubna</div>
-
+      <div class="day-header">
+        <div class="day-name">Úterý</div>
+        <div class="day-date">21. dubna</div>
+        <div class="day-ornament"><span class="dot"></span></div>
+      </div>
       <div class="section">
-        <div class="section-label label-polevka">Polévka</div>
+        <div class="section-label">Polévka</div>
         <div class="item">
           <div class="name">Gulášová polévka <span class="allergens">(1, 9)</span></div>
           <div class="price">39 Kč</div>
@@ -397,25 +587,22 @@
           <div class="price">29 Kč</div>
         </div>
       </div>
-
       <div class="section">
-        <div class="section-label label-local">Local</div>
+        <div class="section-label">Local</div>
         <div class="item">
           <div class="name"><span class="gram">150g</span><strong>Vepřová pečeně se špekem, bramborové placky, smetanový špenát</strong> <span class="allergens">(1, 3, 7)</span></div>
           <div class="price">149 Kč</div>
         </div>
       </div>
-
       <div class="section">
-        <div class="section-label label-ethnic">Ethnic</div>
+        <div class="section-label">Ethnic</div>
         <div class="item">
           <div class="name"><span class="gram">150g</span><strong>Kuřecí soté v červeném kari, kokosové mléko, divoká rýže</strong> <span class="allergens">(4, 9)</span></div>
           <div class="price">149 Kč</div>
         </div>
       </div>
-
       <div class="section">
-        <div class="section-label label-vege">Vege</div>
+        <div class="section-label">Vege</div>
         <div class="item">
           <div class="name"><span class="gram">150g</span><strong>Smažený sýr, vařené brambory s pažitkou, tatarská omáčka</strong> <span class="allergens">(1, 3, 7, 10)</span></div>
           <div class="price">139 Kč</div>
@@ -425,11 +612,13 @@
 
     <!-- STŘEDA -->
     <article class="day" id="st" data-day="3">
-      <h2>Středa</h2>
-      <div class="date">22. dubna</div>
-
+      <div class="day-header">
+        <div class="day-name">Středa</div>
+        <div class="day-date">22. dubna</div>
+        <div class="day-ornament"><span class="dot"></span></div>
+      </div>
       <div class="section">
-        <div class="section-label label-polevka">Polévka</div>
+        <div class="section-label">Polévka</div>
         <div class="item">
           <div class="name">Bramborová polévka s houbami <span class="allergens">(9)</span></div>
           <div class="price">39 Kč</div>
@@ -439,25 +628,22 @@
           <div class="price">29 Kč</div>
         </div>
       </div>
-
       <div class="section">
-        <div class="section-label label-local">Local</div>
+        <div class="section-label">Local</div>
         <div class="item">
           <div class="name"><strong>Pštrosí vejce, bramborová kaše, sterilovaná okurka</strong> <span class="allergens">(1.1, 3, 7, 10)</span></div>
           <div class="price">149 Kč</div>
         </div>
       </div>
-
       <div class="section">
-        <div class="section-label label-ethnic">Ethnic</div>
+        <div class="section-label">Ethnic</div>
         <div class="item">
           <div class="name"><span class="gram">150g</span><strong>Kuře Kung-Pao se zeleninou arašídy, smažené hranolky</strong> <span class="allergens">(5, 6, 8)</span></div>
           <div class="price">139 Kč</div>
         </div>
       </div>
-
       <div class="section">
-        <div class="section-label label-vege">Vege</div>
+        <div class="section-label">Vege</div>
         <div class="item">
           <div class="name"><span class="gram">250g</span><strong>Zeleninové lasagne s bylinkovým bešamelem</strong> <span class="allergens">(1, 3, 7)</span></div>
           <div class="price">149 Kč</div>
@@ -467,11 +653,13 @@
 
     <!-- ČTVRTEK -->
     <article class="day" id="ct" data-day="4">
-      <h2>Čtvrtek</h2>
-      <div class="date">23. dubna</div>
-
+      <div class="day-header">
+        <div class="day-name">Čtvrtek</div>
+        <div class="day-date">23. dubna</div>
+        <div class="day-ornament"><span class="dot"></span></div>
+      </div>
       <div class="section">
-        <div class="section-label label-polevka">Polévka</div>
+        <div class="section-label">Polévka</div>
         <div class="item">
           <div class="name">Brokolicový krém <span class="allergens">(7, 9)</span></div>
           <div class="price">39 Kč</div>
@@ -481,25 +669,22 @@
           <div class="price">29 Kč</div>
         </div>
       </div>
-
       <div class="section">
-        <div class="section-label label-local">Local</div>
+        <div class="section-label">Local</div>
         <div class="item">
           <div class="name"><strong>Kuřecí steak zapečený se sýrem a broskví, pečené grenaille, salát Coleslaw</strong> <span class="allergens">(3, 7, 10)</span></div>
           <div class="price">149 Kč</div>
         </div>
       </div>
-
       <div class="section">
-        <div class="section-label label-ethnic">Ethnic</div>
+        <div class="section-label">Ethnic</div>
         <div class="item">
           <div class="name"><span class="gram">250g</span><strong>Srbské rizotto s vepřovým masem, sýr, sterilovaná okurka</strong> <span class="allergens">(7, 12)</span></div>
           <div class="price">149 Kč</div>
         </div>
       </div>
-
       <div class="section">
-        <div class="section-label label-vege">Vege</div>
+        <div class="section-label">Vege</div>
         <div class="item">
           <div class="name"><span class="gram">250g</span><strong>Smažený květák, vařené brambory, tatarská omáčka</strong> <span class="allergens">(1, 3, 7)</span></div>
           <div class="price">139 Kč</div>
@@ -509,11 +694,13 @@
 
     <!-- PÁTEK -->
     <article class="day" id="pa" data-day="5">
-      <h2>Pátek</h2>
-      <div class="date">24. dubna</div>
-
+      <div class="day-header">
+        <div class="day-name">Pátek</div>
+        <div class="day-date">24. dubna</div>
+        <div class="day-ornament"><span class="dot"></span></div>
+      </div>
       <div class="section">
-        <div class="section-label label-polevka">Polévka</div>
+        <div class="section-label">Polévka</div>
         <div class="item">
           <div class="name">Dršťková polévka z hlívy ústřičné <span class="allergens">(9)</span></div>
           <div class="price">29 Kč</div>
@@ -523,25 +710,22 @@
           <div class="price">39 Kč</div>
         </div>
       </div>
-
       <div class="section">
-        <div class="section-label label-local">Local</div>
+        <div class="section-label">Local</div>
         <div class="item">
           <div class="name"><span class="gram">150g</span><strong>Hovězí guláš, houskové knedlíky, marinovaná červená cibule</strong> <span class="allergens">(1, 3, 7)</span></div>
           <div class="price">149 Kč</div>
         </div>
       </div>
-
       <div class="section">
-        <div class="section-label label-ethnic">Ethnic</div>
+        <div class="section-label">Ethnic</div>
         <div class="item">
           <div class="name"><span class="gram">150g</span><strong>Smažená treska s bramborovou kaší, zelný salátek</strong> <span class="allergens">(1, 3, 7, 9)</span></div>
           <div class="price">139 Kč</div>
         </div>
       </div>
-
       <div class="section">
-        <div class="section-label label-vege">Vege</div>
+        <div class="section-label">Vege</div>
         <div class="item">
           <div class="name"><span class="gram">250g</span><strong>Bramborové šišky s mákem a cukrem</strong> <span class="allergens">(1, 3, 7)</span></div>
           <div class="price">129 Kč</div>
@@ -551,27 +735,27 @@
 
     <!-- SOBOTA -->
     <article class="day" id="so" data-day="6">
-      <h2>Sobota</h2>
-      <div class="date">25. dubna</div>
-
+      <div class="day-header">
+        <div class="day-name">Sobota</div>
+        <div class="day-date">25. dubna</div>
+        <div class="day-ornament"><span class="dot"></span></div>
+      </div>
       <div class="section">
-        <div class="section-label label-polevka">Polévka</div>
+        <div class="section-label">Polévka</div>
         <div class="item">
           <div class="name">Česneková polévka s vejci <span class="allergens">(3, 9)</span></div>
           <div class="price">39 Kč</div>
         </div>
       </div>
-
       <div class="section">
-        <div class="section-label label-local">Local</div>
+        <div class="section-label">Local</div>
         <div class="item">
           <div class="name"><span class="gram">150g</span><strong>Smažený kuřecí řízek, vařené brambory s pažitkou, steril. okurka</strong> <span class="allergens">(1, 3, 7, 12)</span></div>
           <div class="price">149 Kč</div>
         </div>
       </div>
-
       <div class="section">
-        <div class="section-label label-vege">Vege</div>
+        <div class="section-label">Vege</div>
         <div class="item">
           <div class="name"><span class="gram">250g</span><strong>Květákové placičky, jarní salátek s tvarohem</strong> <span class="allergens">(1, 3, 7)</span></div>
           <div class="price">139 Kč</div>
@@ -581,27 +765,27 @@
 
     <!-- NEDĚLE -->
     <article class="day" id="ne" data-day="0">
-      <h2>Neděle</h2>
-      <div class="date">26. dubna</div>
-
+      <div class="day-header">
+        <div class="day-name">Neděle</div>
+        <div class="day-date">26. dubna</div>
+        <div class="day-ornament"><span class="dot"></span></div>
+      </div>
       <div class="section">
-        <div class="section-label label-polevka">Polévka</div>
+        <div class="section-label">Polévka</div>
         <div class="item">
           <div class="name">Rajčatová polévka s celestýnskými nudlemi <span class="allergens">(1, 3, 7)</span></div>
           <div class="price">39 Kč</div>
         </div>
       </div>
-
       <div class="section">
-        <div class="section-label label-local">Local</div>
+        <div class="section-label">Local</div>
         <div class="item">
           <div class="name"><span class="gram">150g</span><strong>Wok pánev s kuřecím masem, zelenina, jasmínová rýže</strong> <span class="allergens">(6, 9)</span></div>
           <div class="price">149 Kč</div>
         </div>
       </div>
-
       <div class="section">
-        <div class="section-label label-vege">Vege</div>
+        <div class="section-label">Vege</div>
         <div class="item">
           <div class="name"><span class="gram">250g</span><strong>Zapečená brokolice se sýrem, vařené brambory, jogurtový dip</strong> <span class="allergens">(3, 7)</span></div>
           <div class="price">139 Kč</div>
@@ -613,8 +797,11 @@
 
   <!-- TÝDENNÍ MENU -->
   <section class="weekly" id="tyden">
-    <h2>Týdenní menu</h2>
-    <div class="sub">Dle aktuální nabídky</div>
+    <div class="weekly-header">
+      <h2>Týdenní menu</h2>
+      <div class="sub">Dle aktuální nabídky</div>
+      <div class="day-ornament"><span class="dot"></span></div>
+    </div>
 
     <div class="weekly-grid">
       <div class="weekly-cat">
@@ -647,7 +834,7 @@
           <div class="name"><span class="gram">180g</span><strong>Grilovaný losos s chřestem</strong>, holandská omáčka <span class="allergens">(1.1, 4, 7)</span></div>
           <div class="price">229 Kč</div>
         </div>
-        <h3 style="margin-top: 28px;">Pasta bar</h3>
+        <h3 class="spaced">Pasta bar</h3>
         <div class="item">
           <div class="name"><span class="gram">300g</span><strong>Linguine carbonara</strong> <span class="allergens">(1, 3, 7)</span></div>
           <div class="price">209 Kč</div>
@@ -677,7 +864,7 @@
   </section>
 
   <div class="legend">
-    <strong>Legenda alergenů:</strong>
+    <strong>Legenda alergenů</strong>
     1) Obiloviny obsahující lepek (1a pšenice, 1b žito, 1c ječmen, 1d oves, 1e špalda, 1f kamut),
     2) Korýši, 3) Vejce, 4) Ryby, 5) Arašídy, 6) Sója, 7) Mléko,
     8) Skořápkové plody (8a mandle, 8b lískové, 8c vlašské, 8d kešu, 8e pekanové, 8f para, 8g pistácie, 8h makadamie),
@@ -686,8 +873,11 @@
   </div>
 
   <footer>
-    Zdroj: <a href="https://www.menubot.cz/app/users/dailymenu-pdf.php?hash=pctvnova54985828525655845&lang=_a&output=&output1=&orientation=&v=1776933465" target="_blank">menubot.cz</a>
-    · Perfect Canteen TV Nova · tvnova@eatperfect.cz
+    <a href="https://www.menubot.cz/app/users/dailymenu-pdf.php?hash=pctvnova54985828525655845&lang=_a&output=&output1=&orientation=&v=1776933465" target="_blank">Zdroj · menubot.cz</a>
+    <span class="sep">·</span>
+    Perfect Canteen TV Nova
+    <span class="sep">·</span>
+    tvnova@eatperfect.cz
   </footer>
 
 </div>
