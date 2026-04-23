@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TV Nova — Denní menu</title>
+<style>
+  :root {
+    --bg: #faf7f2;
+    --card: #ffffff;
+    --ink: #1a1612;
+    --muted: #7a6f63;
+    --line: #ece5db;
+    --accent: #e85d1f;
+    --accent-soft: #fbe8dc;
+    --gold: #c89b3c;
+    --green: #6b8e3d;
+    --red: #b03030;
+    --shadow: 0 4px 18px rgba(50, 30, 10, 0.06);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--ink); }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.5;
+    padding: 32px 20px 80px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; }
+
+  header.hero {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 22px;
+    margin-bottom: 28px;
+    border-bottom: 2px solid var(--ink);
+  }
+  .brand h1 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .brand .tagline {
+    color: var(--muted);
+    font-size: 14px;
+    margin-top: 4px;
+    letter-spacing: 0.02em;
+  }
+  .meta {
+    text-align: right;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .meta .week {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+  }
+  .meta .updated { margin-top: 4px; }
+
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+  .nav a {
+    text-decoration: none;
+    color: var(--ink);
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: all 0.15s ease;
+  }
+  .nav a:hover { border-color: var(--accent); color: var(--accent); }
+  .nav a.today {
+    background: var(--ink);
+    color: #fff;
+    border-color: var(--ink);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 20px;
+  }
+  .day {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--line);
+    position: relative;
+    scroll-margin-top: 20px;
+  }
+  .day.today {
+    border-color: var(--accent);
+    box-shadow: 0 6px 26px rgba(232, 93, 31, 0.18);
+  }
+  .day.today::before {
+    content: "DNES";
+    position: absolute;
+    top: -10px;
+    right: 18px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+  .day h2 {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .day .date {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+
+  .section { margin-top: 16px; }
+  .section:first-of-type { margin-top: 0; }
+  .section-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .label-polevka { background: #fde9e8; color: #b03030; }
+  .label-local   { background: #fbe8dc; color: var(--accent); }
+  .label-ethnic  { background: #f4e8c6; color: #8a6a14; }
+  .label-vege    { background: #e2efce; color: #4f6e2a; }
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--line);
+  }
+  .item:last-child { border-bottom: none; }
+  .item .name {
+    flex: 1;
+    font-size: 15px;
+  }
+  .item .name strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .item .name .gram {
+    color: var(--muted);
+    font-weight: 500;
+    margin-right: 4px;
+  }
+  .item .allergens {
+    display: inline-block;
+    color: var(--muted);
+    font-size: 11px;
+    margin-left: 4px;
+  }
+  .item .price {
+    font-weight: 700;
+    color: var(--ink);
+    white-space: nowrap;
+    font-size: 15px;
+  }
+
+  /* Weekly section */
+  .weekly {
+    margin-top: 48px;
+    background: linear-gradient(135deg, #1a1612 0%, #2b231b 100%);
+    color: #f5efe6;
+    border-radius: 20px;
+    padding: 36px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+  }
+  .weekly h2 {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+  .weekly .sub {
+    color: #c9bfb1;
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+  .weekly-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 26px;
+  }
+  .weekly-cat h3 {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(200, 155, 60, 0.3);
+  }
+  .weekly .item {
+    border-bottom-color: rgba(255,255,255,0.08);
+  }
+  .weekly .item .name { color: #f5efe6; }
+  .weekly .item .name strong { color: #fff; }
+  .weekly .item .name .gram { color: #c9bfb1; }
+  .weekly .item .allergens { color: #998b76; }
+  .weekly .item .price { color: var(--gold); }
+
+  .legend {
+    margin-top: 36px;
+    padding: 20px 24px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+  .legend strong { color: var(--ink); }
+
+  footer {
+    margin-top: 32px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    body { padding: 20px 14px 60px; }
+    .day { padding: 20px; }
+    .weekly { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="brand">
+      <h1>TV Nova</h1>
+      <div class="tagline">O kus lepší jídlo každý den · Perfect Canteen</div>
+    </div>
+    <div class="meta">
+      <div class="week">20. 4. – 26. 4. 2026</div>
+      <div class="updated">Aktualizováno: 23. 4. 2026</div>
+    </div>
+  </header>
+
+  <nav class="nav">
+    <a href="#po">Pondělí</a>
+    <a href="#ut">Úterý</a>
+    <a href="#st">Středa</a>
+    <a href="#ct" class="today">Čtvrtek</a>
+    <a href="#pa">Pátek</a>
+    <a href="#so">Sobota</a>
+    <a href="#ne">Neděle</a>
+    <a href="#tyden">Týdenní menu</a>
+  </nav>
+
+  <div class="grid">
+
+    <!-- PONDĚLÍ -->
+    <article class="day" id="po">
+      <h2>Pondělí</h2>
+      <div class="date">20. dubna</div>
+
+      <div class="section">
+        <div class="section-label label-polevka">Polévka</div>
+        <div class="item">
+          <div class="name">Hovězí vývar s kapánín a zeleninou julienne <span class="allergens">(1, 3, 7, 9)</span></div>
+          <div class="price">29 Kč</div>
+        </div>
+        <div class="item">
+          <div class="name">Hráškový krém s krutony <span class="allergens">(7, 9)</span></div>
+          <div class="price">39 Kč</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label label-local">Local</div>
+        <div class="item">
+          <div class="name"><span class="gram">150g</span><strong>Smažený vepřový karbanátek, plněný hermelínem, batátové pyré</strong> <span class="allergens">(1, 3, 7)</span></div>
+          <div class="price">149 Kč</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label label-vege">Vege</div>
+        <div class="item">
+          <div class="name"><span class="gram">150g</span><strong>Kuřecí plátek s omáčkou z pečených paprik, jasmínová rýže, jarní cibulka</strong> <span class="allergens">(7, 9)</span></div>
+          <div class="price">149 Kč</div>
+        </div>
+        <div class="item">
+          <div class="name"><span class="gram">250g</span><strong>Šafránové rizotto s pečenou řepou, sýr Gran Moravia</strong> <span class="allergens">(7)</span></div>
+          <div class="price">139 Kč</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ÚTERÝ -->
+    <article class="day" id="ut">
+      <h2>Úterý</h2>
+      <div class="date">21. dubna</div>
+
+      <div class="section">
+        <div class="section-label label-polevka">Polévka</div>
+        <div class="item">
+          <div class="name">Gulášová polévka <span class="allergens">(1, 9)</span></div>
+          <div class="price">39 Kč</div>
+        </div>
+        <div class="item">
+          <div class="name">Pórková polévka s vejci <span class="allergens">(3, 7, 9)</span></div>
+          <div class="price">29 Kč</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label label-local">Local</div>
+        <div class="item">
+          <div class="name"><span class="gram">150g</span><strong>Vepřová pečeně se špekem, bramborové placky, smetanový špenát</strong> <span class="allergens">(1, 3, 7)</span></div>
+          <div class="price">149 Kč</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label label-ethnic">Ethnic</div>
+        <div class="item">
+          <div class="name"><span class="gram">150g</span><strong>Kuřecí soté v červeném kari, kokosové mléko, divoká rýže</strong> <span class="allergens">(4, 9)</span></div>
+          <div class="price">149 Kč</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label label-vege">Vege</div>
+        <div class="item">
+          <div class="name"><span class="gram">150g</span><strong>Smažený sýr, vařené brambory s pažitkou, tatarská omáčka</strong> <span class="allergens">(1, 3, 7, 10)</span></div>
+          <div class="price">139 Kč</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- STŘEDA -->
+    <article class="day" id="st">
+      <h2>Středa</h2>
+      <div class="date">22. dubna</div>
+
+      <div class="section">
+        <div class="section-label label-polevka">Polévka</div>
+        <div class="item">
+          <div class="name">Bramborová polévka s houbami <span class="allergens">(9)</span></div>
+          <div class="price">39 Kč</div>
+        </div>
+        <div class="item">
+          <div class="name">Zeleninový vývar s tarhoňou <span class="allergens">(1, 3, 7, 9)</span></div>
+          <div class="price">29 Kč</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label label-local">Local</div>
+        <div class="item">
+          <div class="name"><strong>Pštrosí vejce, bramborová kaše, sterilovaná okurka</strong> <span class="allergens">(1.1, 3, 7, 10)</span></div>
+          <div class="price">149 Kč</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label label-ethnic">Ethnic</div>
+        <div class="item">
+          <div class="name"><span class="gram">150g</span><strong>Kuře Kung-Pao se zeleninou arašídy, smažené hranolky</strong> <span class="allergens">(5, 6, 8)</span></div>
+          <div class="price">139 Kč</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label label-vege">Vege</div>
+        <div class="item">
+          <div class="name"><span class="gram">250g</span><strong>Zeleninové lasagne s bylinkovým bešamelem</strong> <span class="allergens">(1, 3, 7)</span></div>
+          <div class="price">149 Kč</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ČTVRTEK -->
+    <article class="day today" id="ct">
+      <h2>Čtvrtek</h2>
+      <div class="date">23. dubna</div>
+
+      <div class="section">
+        <div class="section-label label-polevka">Polévka</div>
+        <div class="item">
+          <div class="name">Brokolicový krém <span class="allergens">(7, 9)</span></div>
+          <div class="price">39 Kč</div>
+        </div>
+        <div class="item">
+          <div class="name">Hovězí vývar s játrovými knedlíčky <span class="allergens">(1, 3, 7, 9)</span></div>
+          <div class="price">29 Kč</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label label-local">Local</div>
+        <div class="item">
+          <div class="name"><strong>Kuřecí steak zapečený se sýrem a broskví, pečené grenaille, salát Coleslaw</strong> <span class="allergens">(3, 7, 10)</span></div>
+          <div class="price">149 Kč</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label label-ethnic">Ethnic</div>
+        <div class="item">
+          <div class="name"><span class="gram">250g</span><strong>Srbské rizotto s vepřovým masem, sýr, sterilovaná okurka</strong> <span class="allergens">(7, 12)</span></div>
+          <div class="price">149 Kč</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label label-vege">Vege</div>
+        <div class="item">
+          <div class="name"><span class="gram">250g</span><strong>Smažený květák, vařené brambory, tatarská omáčka</strong> <span class="allergens">(1, 3, 7)</span></div>
+          <div class="price">139 Kč</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- PÁTEK -->
+    <article class="day" id="pa">
+      <h2>Pátek</h2>
+      <div class="date">24. dubna</div>
+
+      <div class="section">
+        <div class="section-label label-polevka">Polévka</div>
+        <div class="item">
+          <div class="name">Dršťková polévka z hlívy ústřičné <span class="allergens">(9)</span></div>
+          <div class="price">29 Kč</div>
+        </div>
+        <div class="item">
+          <div class="name">Asijská polévka se zeleninou a kuřecím masem <span class="allergens">(9, 12)</span></div>
+          <div class="price">39 Kč</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label label-local">Local</div>
+        <div class="item">
+          <div class="name"><span class="gram">150g</span><strong>Hovězí guláš, houskové knedlíky, marinovaná červená cibule</strong> <span class="allergens">(1, 3, 7)</span></div>
+          <div class="price">149 Kč</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label label-ethnic">Ethnic</div>
+        <div class="item">
+          <div class="name"><span class="gram">150g</span><strong>Smažená treska s bramborovou kaší, zelný salátek</strong> <span class="allergens">(1, 3, 7, 9)</span></div>
+          <div class="price">139 Kč</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label label-vege">Vege</div>
+        <div class="item">
+          <div class="name"><span class="gram">250g</span><strong>Bramborové šišky s mákem a cukrem</strong> <span class="allergens">(1, 3, 7)</span></div>
+          <div class="price">129 Kč</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- SOBOTA -->
+    <article class="day" id="so">
+      <h2>Sobota</h2>
+      <div class="date">25. dubna</div>
+
+      <div class="section">
+        <div class="section-label label-polevka">Polévka</div>
+        <div class="item">
+          <div class="name">Česneková polévka s vejci <span class="allergens">(3, 9)</span></div>
+          <div class="price">39 Kč</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label label-local">Local</div>
+        <div class="item">
+          <div class="name"><span class="gram">150g</span><strong>Smažený kuřecí řízek, vařené brambory s pažitkou, steril. okurka</strong> <span class="allergens">(1, 3, 7, 12)</span></div>
+          <div class="price">149 Kč</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label label-vege">Vege</div>
+        <div class="item">
+          <div class="name"><span class="gram">250g</span><strong>Květákové placičky, jarní salátek s tvarohem</strong> <span class="allergens">(1, 3, 7)</span></div>
+          <div class="price">139 Kč</div>
+        </div>
+      </div>
+    </article>
+
+    <!-- NEDĚLE -->
+    <article class="day" id="ne">
+      <h2>Neděle</h2>
+      <div class="date">26. dubna</div>
+
+      <div class="section">
+        <div class="section-label label-polevka">Polévka</div>
+        <div class="item">
+          <div class="name">Rajčatová polévka s celestýnskými nudlemi <span class="allergens">(1, 3, 7)</span></div>
+          <div class="price">39 Kč</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label label-local">Local</div>
+        <div class="item">
+          <div class="name"><span class="gram">150g</span><strong>Wok pánev s kuřecím masem, zelenina, jasmínová rýže</strong> <span class="allergens">(6, 9)</span></div>
+          <div class="price">149 Kč</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-label label-vege">Vege</div>
+        <div class="item">
+          <div class="name"><span class="gram">250g</span><strong>Zapečená brokolice se sýrem, vařené brambory, jogurtový dip</strong> <span class="allergens">(3, 7)</span></div>
+          <div class="price">139 Kč</div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- TÝDENNÍ MENU -->
+  <section class="weekly" id="tyden">
+    <h2>Týdenní menu</h2>
+    <div class="sub">Dle aktuální nabídky</div>
+
+    <div class="weekly-grid">
+      <div class="weekly-cat">
+        <h3>À la carte</h3>
+        <div class="item">
+          <div class="name"><span class="gram">150g</span><strong>Duo smažených sýrů</strong> (100g gouda a 50g hermelín), perfect tatarka <span class="allergens">(1, 3, 7)</span></div>
+          <div class="price">179 Kč</div>
+        </div>
+        <div class="item">
+          <div class="name"><span class="gram">200g</span><strong>Hovězí flank steak</strong>, zelené fazolky, slanina, demi glace</div>
+          <div class="price">240 Kč</div>
+        </div>
+        <div class="item">
+          <div class="name"><span class="gram">250g</span><strong>Vepřová panenka na rozmarýnu</strong>, omáčka ze zeleného pepře <span class="allergens">(7)</span></div>
+          <div class="price">195 Kč</div>
+        </div>
+        <div class="item">
+          <div class="name"><span class="gram">150g</span><strong>Perfect Burger</strong> (mleté hovězí, slanina, čedar, kyselá okurka) <span class="allergens">(1, 3, 7)</span></div>
+          <div class="price">210 Kč</div>
+        </div>
+        <div class="item">
+          <div class="name"><span class="gram">120g</span><strong>Caesar salát</strong> s kuřecím masem a krutony <span class="allergens">(1, 3, 4, 7)</span></div>
+          <div class="price">185 Kč</div>
+        </div>
+      </div>
+
+      <div class="weekly-cat">
+        <h3>Chef Speciál</h3>
+        <div class="item">
+          <div class="name"><span class="gram">180g</span><strong>Grilovaný losos s chřestem</strong>, holandská omáčka <span class="allergens">(1.1, 4, 7)</span></div>
+          <div class="price">229 Kč</div>
+        </div>
+        <h3 style="margin-top: 28px;">Pasta bar</h3>
+        <div class="item">
+          <div class="name"><span class="gram">300g</span><strong>Linguine carbonara</strong> <span class="allergens">(1, 3, 7)</span></div>
+          <div class="price">209 Kč</div>
+        </div>
+        <div class="item">
+          <div class="name"><span class="gram">300g</span><strong>Linguine aglio olio e peperoncino</strong> <span class="allergens">(1, 3, 7)</span></div>
+          <div class="price">179 Kč</div>
+        </div>
+      </div>
+
+      <div class="weekly-cat">
+        <h3>Přílohy</h3>
+        <div class="item">
+          <div class="name"><span class="gram">200g</span><strong>Pečené grenaille</strong></div>
+          <div class="price">45 Kč</div>
+        </div>
+        <div class="item">
+          <div class="name"><span class="gram">200g</span><strong>Grilovaná zelenina</strong></div>
+          <div class="price">45 Kč</div>
+        </div>
+        <div class="item">
+          <div class="name"><span class="gram">200g</span><strong>Hranolky</strong></div>
+          <div class="price">45 Kč</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="legend">
+    <strong>Legenda alergenů:</strong>
+    1) Obiloviny obsahující lepek (1a pšenice, 1b žito, 1c ječmen, 1d oves, 1e špalda, 1f kamut),
+    2) Korýši, 3) Vejce, 4) Ryby, 5) Arašídy, 6) Sója, 7) Mléko,
+    8) Skořápkové plody (8a mandle, 8b lískové, 8c vlašské, 8d kešu, 8e pekanové, 8f para, 8g pistácie, 8h makadamie),
+    9) Celer, 10) Hořčice, 11) Sezam, 12) Oxid siřičitý, 13) Vlčí bob, 14) Měkkýši.
+    Pokrmy připravujeme z čerstvých surovin od prověřených dodavatelů. Gramáž masa je uvedena v syrovém stavu.
+  </div>
+
+  <footer>
+    Zdroj: <a href="https://www.menubot.cz/app/users/dailymenu-pdf.php?hash=pctvnova54985828525655845&lang=_a&output=&output1=&orientation=&v=1776933465" target="_blank">menubot.cz</a>
+    · Perfect Canteen TV Nova · tvnova@eatperfect.cz
+  </footer>
+
+</div>
+</body>
+</html>
